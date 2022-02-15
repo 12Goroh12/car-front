@@ -12,4 +12,5 @@ export const Wrap = styled.div`
 export const Someting = styled.h1`
   font-size: 32px;
   padding: 20px;
+  color: white;
 `;

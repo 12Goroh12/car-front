@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  min-height: calc(100vh - 60px);
+  height: 100vh;
+  background: url("/info.jpg") center center/cover no-repeat fixed;
 `;

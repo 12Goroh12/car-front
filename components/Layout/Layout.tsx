@@ -6,13 +6,11 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
-  return (
-    <>
-      <Navbar />
-      <Wrapper>{children}</Wrapper>
-    </>
-  );
-};
+const Layout: FC<LayoutProps> = ({ children }) => (
+  <>
+    <Navbar />
+    <Wrapper>{children}</Wrapper>
+  </>
+);
 
 export default Layout;

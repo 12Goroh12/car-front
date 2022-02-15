@@ -1,8 +1,12 @@
+import { useSession } from "next-auth/react";
 import { FC } from "react";
-import { Container } from "./style";
+import SignIn from "../auth/SignIn";
+import SignOut from "../auth/SignOut";
 
 const Navrabr: FC = () => {
-  return <Container>Navbar</Container>;
+  const { data: session } = useSession();
+
+  return session ? <SignOut /> : <SignIn />;
 };
 
 export default Navrabr;
