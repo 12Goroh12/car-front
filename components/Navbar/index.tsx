@@ -6,11 +6,7 @@ import SignOut from "../auth/SignOut";
 const Navrabr: FC = () => {
   const { data: session } = useSession();
 
-  if (!session) {
-    return <SignIn />;
-  }
-
-  return <SignOut />;
+  return session ? <SignOut /> : <SignIn />;
 };
 
 export default Navrabr;

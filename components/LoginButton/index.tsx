@@ -10,7 +10,7 @@ interface ButtonProps {
   color: string;
 }
 
-const LobinButton: FC<ButtonProps> = ({ provider, color }) => {
+const LoginButton: FC<ButtonProps> = ({ provider, color }) => {
   const router: NextRouter = useRouter();
 
   const handleClick = () => {
@@ -25,4 +25,4 @@ const LobinButton: FC<ButtonProps> = ({ provider, color }) => {
   );
 };
 
-export default LobinButton;
+export default LoginButton;

@@ -1,3 +1,4 @@
+import { WebsiteUrls } from "./../../../types/enums/index";
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
@@ -15,6 +16,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: WebsiteUrls.LOGIN,
   },
+  secret: process.env.NEXTAUTH_SECRET,
 });

@@ -19,7 +19,7 @@ const SignOut: FC = () => {
         </Link>
       </Logo>
       <div>{session?.user?.name}</div>
-      <Button onClick={() => signOut()}>Log off</Button>
+      <Button onClick={signOut}>Log off</Button>
     </Container>
   );
 };

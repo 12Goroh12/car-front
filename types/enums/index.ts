@@ -1,4 +1,5 @@
 export enum WebsiteUrls {
   HOME = "/",
-  LOGIN = '/login'
+  LOGIN = "/login",
+  REGISTRATION = "/registration",
 }

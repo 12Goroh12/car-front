@@ -11,7 +11,7 @@ const SignIn: FC = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/registration");
+    router.push(WebsiteUrls.REGISTRATION);
   };
 
   return (
@@ -25,7 +25,7 @@ const SignIn: FC = () => {
       </Logo>
       <ButtonGroup>
         <Button onClick={handleClick}>Registration</Button>
-        <Button onClick={() => signIn()}>Sign in</Button>
+        <Button onClick={signIn}>Sign in</Button>
       </ButtonGroup>
     </Container>
   );

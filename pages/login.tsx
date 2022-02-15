@@ -1,4 +1,4 @@
-import LobinButton from "../components/LoginButton";
+import LoginButton from "../components/LoginButton";
 import { GetServerSideProps, NextPage } from "next";
 import { Form, Title, Wrapper } from "../styles/login";
 import { getProviders, useSession } from "next-auth/react";
@@ -22,8 +22,8 @@ const Login: NextPage<ILoginProps> = ({ providers }) => {
     <Wrapper>
       <Form>
         <Title>Login via social networks</Title>
-        <LobinButton color="#171515" provider={providers.github} />
-        <LobinButton color="#4285f4" provider={providers.google} />
+        <LoginButton color="#171515" provider={providers.github} />
+        <LoginButton color="#4285f4" provider={providers.google} />
       </Form>
     </Wrapper>
   );
