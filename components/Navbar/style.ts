@@ -29,6 +29,16 @@ export const Button = styled.button`
   &:active {
     opacity: 1;
   }
+
+  @media (max-width: 550px) {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  @media (max-width: 350px) {
+    font-size: 8px;
+    padding: 3px 5px;
+  }
 `;
 
 export const ButtonGroup = styled.div`

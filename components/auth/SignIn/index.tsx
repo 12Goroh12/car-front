@@ -3,7 +3,6 @@ import Image from "next/image";
 import logo from "../../../public/tesla.svg";
 import { Button, ButtonGroup, Container, Logo } from "../../Navbar/style";
 import { WebsiteUrls } from "../../../types/enums";
-import { signIn } from "next-auth/react";
 import { FC } from "react";
 import { useRouter } from "next/router";
 
@@ -11,7 +10,7 @@ const SignIn: FC = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(WebsiteUrls.REGISTRATION);
+    router.push(WebsiteUrls.AUTH_PAGE);
   };
 
   return (
@@ -24,8 +23,7 @@ const SignIn: FC = () => {
         </Link>
       </Logo>
       <ButtonGroup>
-        <Button onClick={handleClick}>Registration</Button>
-        <Button onClick={signIn}>Sign in</Button>
+        <Button onClick={handleClick}>Sign in</Button>
       </ButtonGroup>
     </Container>
   );

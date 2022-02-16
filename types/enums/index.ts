@@ -1,5 +1,5 @@
 export enum WebsiteUrls {
   HOME = "/",
-  LOGIN = "/login",
-  REGISTRATION = "/registration",
+  SOCIAL = "/social",
+  AUTH_PAGE = "/authpage",
 }
