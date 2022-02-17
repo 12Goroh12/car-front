@@ -33,6 +33,11 @@ export const FormBlock = styled(Form)`
   border-right: 1px solid rgba(0, 0, 0, 0.5);
   margin-right: 1.5rem;
 
+  label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
   @media (max-width: 550px) {
     border-right: none;
     margin-right: 0;
@@ -82,10 +87,10 @@ export const Links = styled.a`
 
 export const Input = styled(Field)`
   padding: 1rem 2rem;
+  margin-bottom: 0.5rem;
   outline: none;
   border: none;
   border-radius: 10px;
-  margin-bottom: 1.5rem;
   box-shadow: 0px 8px 13px -10px rgba(0, 0, 0, 0.5);
 `;
 
@@ -105,4 +110,12 @@ export const Button = styled.button`
   &:active {
     opacity: 1;
   }
+  &:disabled {
+    opacity: 0.2;
+  }
+`;
+
+export const Error = styled.p`
+  font-size: 10px;
+  color: red;
 `;
