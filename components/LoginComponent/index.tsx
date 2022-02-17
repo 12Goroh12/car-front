@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Formik, FormikHelpers } from "formik";
 import { FC, useState } from "react";
 import {
   Button,
@@ -18,6 +18,7 @@ import axios from "axios";
 import { NextRouter, useRouter } from "next/router";
 import { WebsiteUrls } from "../../types/enums";
 import { BaseUrl } from "../../types/enums/index";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
 interface ILoginComponentProps {
   heading: string;
@@ -26,13 +27,27 @@ interface ILoginComponentProps {
 }
 
 const LoginComponent: FC<ILoginComponentProps> = ({ heading, link, href }) => {
+  const [exist, setExist] = useState(false);
   const router: NextRouter = useRouter();
+  const requiredField = yup.string().required();
 
   const validationSchema = yup.object().shape({
-    name: yup.string().required(),
-    password: yup.string().required(),
-    email: yup.string().email().required(),
+    name: requiredField,
+    password: requiredField,
+    email: requiredField,
   });
+
+  const submitHandler = async (values: Values) => {
+    try {
+      const response = await axios.post(`${BaseUrl.URL}auth/register`, values);
+
+      response.data.message === "email exists"
+        ? setExist(true)
+        : router.push(WebsiteUrls.HOME);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
@@ -49,11 +64,8 @@ const LoginComponent: FC<ILoginComponentProps> = ({ heading, link, href }) => {
             values: Values,
             { setSubmitting, resetForm }: FormikHelpers<Values>
           ) => {
-            await axios
-              .post(`${BaseUrl.URL}auth/register`, values)
-              .then((resp) => console.log(resp));
+            submitHandler(values);
             setSubmitting(false);
-            router.push(WebsiteUrls.HOME);
             resetForm();
           }}
         >
@@ -87,7 +99,9 @@ const LoginComponent: FC<ILoginComponentProps> = ({ heading, link, href }) => {
                 name="password"
                 type="password"
               />
-              {touched.name && errors.name && <Error>{errors.password}</Error>}
+              {touched.password && errors.password && (
+                <Error>{errors.password}</Error>
+              )}
               <label htmlFor="email">Email</label>
               <Input
                 value={values.email}
@@ -98,7 +112,8 @@ const LoginComponent: FC<ILoginComponentProps> = ({ heading, link, href }) => {
                 placeholder="john@acme.com"
                 type="email"
               />
-              {touched.name && errors.name && <Error>{errors.email}</Error>}
+              {exist && <Error>This Email already exists</Error>}
+              {touched.email && errors.email && <Error>{errors.email}</Error>}
               <Button onClick={handleSubmit} disabled={!isValid} type="submit">
                 Submit
               </Button>
