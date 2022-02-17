@@ -5,6 +5,7 @@ import { getProviders, useSession } from "next-auth/react";
 import { IProviders } from "../types/provider";
 import { NextRouter, useRouter } from "next/router";
 import { WebsiteUrls } from "../types/enums";
+import Head from "next/head";
 
 interface ISocialProps {
   providers: IProviders;
@@ -13,7 +14,6 @@ interface ISocialProps {
 const Social: NextPage<ISocialProps> = ({ providers }) => {
   const { data: session } = useSession();
   const router: NextRouter = useRouter();
-  console.log(providers, session);
 
   if (session) {
     router.push(WebsiteUrls.HOME);
@@ -21,6 +21,9 @@ const Social: NextPage<ISocialProps> = ({ providers }) => {
 
   return (
     <Wrapper>
+      <Head>
+        <title>Social page</title>
+      </Head>
       <Form>
         <Title>Log in to your account</Title>
         <LoginButton color="#171515" provider={providers.github} />
