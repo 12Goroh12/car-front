@@ -8,3 +8,8 @@ export enum WebsiteUrls {
 export enum BaseUrl {
   URL = "http://localhost:5000/",
 }
+
+export enum Roles {
+  ADMIN = "ADMIN",
+  USER = "USER",
+}

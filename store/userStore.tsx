@@ -1,13 +1,5 @@
 import { makeAutoObservable } from "mobx";
-
-export interface IUser {
-  email: string;
-  name: string;
-  password: string;
-  roles: string[];
-  __v: number;
-  _id: string;
-}
+import { IUser } from "../types/user";
 
 class User {
   users: IUser = {
@@ -30,6 +22,7 @@ class User {
 
   removeUser() {
     localStorage.removeItem("user");
+    localStorage.removeItem("social");
   }
 }
 
