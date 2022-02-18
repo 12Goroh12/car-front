@@ -16,6 +16,7 @@ const Social: NextPage<ISocialProps> = ({ providers }) => {
   const router: NextRouter = useRouter();
 
   if (session) {
+    localStorage.setItem("social", JSON.stringify(session?.user));
     router.push(WebsiteUrls.HOME);
   }
 
@@ -24,6 +25,7 @@ const Social: NextPage<ISocialProps> = ({ providers }) => {
       <Head>
         <title>Social page</title>
       </Head>
+
       <Form>
         <Title>Log in to your account</Title>
         <LoginButton color="#171515" provider={providers.github} />

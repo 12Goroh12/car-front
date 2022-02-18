@@ -5,8 +5,12 @@ import SignOut from "../auth/SignOut";
 
 const Navrabr: FC = () => {
   const { data: session } = useSession();
+  let user;
+  if (typeof window !== "undefined") {
+    user = localStorage.getItem("user");
+  }
 
-  return session ? <SignOut /> : <SignIn />;
+  return user || session ? <SignOut /> : <SignIn />;
 };
 
 export default Navrabr;

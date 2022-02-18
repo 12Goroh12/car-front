@@ -1,7 +1,8 @@
 export enum WebsiteUrls {
   HOME = "/",
   SOCIAL = "/social",
-  AUTH_PAGE = "/authpage",
+  REGISTRATION = "/registration",
+  LOGIN = "/login",
 }
 
 export enum BaseUrl {
