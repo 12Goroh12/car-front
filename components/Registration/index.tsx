@@ -11,11 +11,12 @@ const Registration: FC = () => {
 
   const submitHandler = async (values: Values) => {
     try {
-      const response = await axios.post(`${BaseUrl.URL}auth/register`, values);
-
-      response.data.message === "email exists"
-        ? setExist(true)
-        : router.push(WebsiteUrls.LOGIN);
+      await axios
+        .post(`${BaseUrl.URL}auth/register`, values)
+        .then(({ data }) => data && router.push(WebsiteUrls.LOGIN))
+        .catch(({ response }) => {
+          response.status === 400 && setExist(true);
+        });
     } catch (error) {
       console.log(error);
     }

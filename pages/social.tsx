@@ -16,6 +16,7 @@ const Social: NextPage<ISocialProps> = ({ providers }) => {
   const router: NextRouter = useRouter();
 
   if (session) {
+    localStorage.setItem("social", JSON.stringify(session?.user));
     router.push(WebsiteUrls.HOME);
   }
 

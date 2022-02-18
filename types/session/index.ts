@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IUserSocial {
   email: string;
   image: string;
   name: string;
@@ -6,5 +6,5 @@ export interface IUser {
 
 export interface ISession {
   expires: string;
-  user: IUser;
+  user: IUserSocial;
 }

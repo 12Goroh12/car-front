@@ -13,13 +13,15 @@ const Login: FC = () => {
 
   const submitHandler = async (values: Values) => {
     try {
-      const { data } = await axios.post(`${BaseUrl.URL}auth/login`, values);
-
-      userStore.addUser(data.user);
-
-      data.message === "user not found with this email"
-        ? setExist(true)
-        : router.push(WebsiteUrls.HOME);
+      await axios
+        .post(`${BaseUrl.URL}auth/login`, values)
+        .then(({ data }) => {
+          userStore.addUser(data.user);
+          router.push(WebsiteUrls.HOME);
+        })
+        .catch(({ response }) => {
+          response.status === 400 && setExist(true);
+        });
     } catch (error) {
       console.log(error);
     }
