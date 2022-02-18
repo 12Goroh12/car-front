@@ -7,10 +7,20 @@ const Navrabr: FC = () => {
   const { data: session } = useSession();
   let user;
   if (typeof window !== "undefined") {
-    user = localStorage.getItem("user");
+    user = JSON.parse(localStorage.getItem("user") || "null");
   }
 
-  return user || session ? <SignOut /> : <SignIn />;
+  return (
+    <>
+      {user ? (
+        <SignOut admin={user} />
+      ) : <SignIn /> && session ? (
+        <SignOut />
+      ) : (
+        <SignIn />
+      )}
+    </>
+  );
 };
 
 export default Navrabr;

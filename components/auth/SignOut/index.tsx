@@ -1,16 +1,32 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/tesla.svg";
-import { Button, Container, Logo } from "../../Navbar/style";
-import { WebsiteUrls } from "../../../types/enums";
-import { signOut } from "next-auth/react";
-import { FC } from "react";
+import MenuAdmin from "../../admin/MenuAdmin";
 import userStore from "../../../store/userStore";
+import { FiSettings } from "react-icons/fi";
+import { Button, Container, Logo, Menu, Settings } from "../../Navbar/style";
+import { Roles, WebsiteUrls } from "../../../types/enums";
+import { signOut } from "next-auth/react";
+import { ChangeEvent, FC, useState } from "react";
+import { IUser } from "../../../types/user";
+import { NextRouter, useRouter } from "next/router";
 
-const SignOut: FC = () => {
+interface ISignOutProps {
+  admin?: IUser;
+}
+
+const SignOut: FC<ISignOutProps> = ({ admin }) => {
+  const router: NextRouter = useRouter();
+  const [popup, setPopup] = useState(false);
+
   const signOutHandler = () => {
     userStore.removeUser();
     signOut();
+    router.push(WebsiteUrls.HOME);
+  };
+
+  const popupHandler = () => {
+    setPopup(!popup);
   };
 
   return (
@@ -22,7 +38,17 @@ const SignOut: FC = () => {
           </a>
         </Link>
       </Logo>
-      <Button onClick={signOutHandler}>Sign out</Button>
+      <Menu>
+        {admin?.roles[0] === Roles.ADMIN && (
+          <>
+            <Settings onClick={popupHandler}>
+              <FiSettings />
+            </Settings>
+            {popup && <MenuAdmin info={admin} />}
+          </>
+        )}
+        <Button onClick={signOutHandler}>Sign out</Button>
+      </Menu>
     </Container>
   );
 };

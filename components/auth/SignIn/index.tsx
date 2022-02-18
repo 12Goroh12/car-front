@@ -22,6 +22,7 @@ const SignIn: FC = () => {
           </a>
         </Link>
       </Logo>
+
       <ButtonGroup>
         <Button onClick={handleClick}>Sign in</Button>
       </ButtonGroup>
