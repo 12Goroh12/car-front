@@ -24,6 +24,7 @@ const Social: NextPage<ISocialProps> = ({ providers }) => {
       <Head>
         <title>Social page</title>
       </Head>
+
       <Form>
         <Title>Log in to your account</Title>
         <LoginButton color="#171515" provider={providers.github} />

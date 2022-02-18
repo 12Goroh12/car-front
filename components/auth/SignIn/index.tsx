@@ -10,7 +10,7 @@ const SignIn: FC = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(WebsiteUrls.AUTH_PAGE);
+    router.push(WebsiteUrls.REGISTRATION);
   };
 
   return (

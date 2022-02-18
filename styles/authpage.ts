@@ -46,6 +46,8 @@ export const FormBlock = styled(Form)`
 
 export const Header = styled.div`
   text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Heading = styled.h1`
@@ -69,6 +71,7 @@ export const Links = styled.a`
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  margin-bottom: 0.5rem;
 
   @media (max-width: 550px) {
     font-size: 10px;
@@ -83,6 +86,12 @@ export const Links = styled.a`
   &:active {
     opacity: 1;
   }
+`;
+
+export const Account = styled.a`
+  color: blue;
+  font-size: 12px;
+  cursor: pointer;
 `;
 
 export const Input = styled(Field)`

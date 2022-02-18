@@ -7,7 +7,10 @@ import { signOut, useSession } from "next-auth/react";
 import { FC } from "react";
 
 const SignOut: FC = () => {
-  const { data: session } = useSession();
+  const signOutHandle = () => {
+    localStorage.removeItem("user");
+    signOut();
+  };
 
   return (
     <Container>
@@ -18,8 +21,7 @@ const SignOut: FC = () => {
           </a>
         </Link>
       </Logo>
-      <div>{session?.user?.name}</div>
-      <Button onClick={signOut}>Sign out</Button>
+      <Button onClick={signOutHandle}>Sign out</Button>
     </Container>
   );
 };
