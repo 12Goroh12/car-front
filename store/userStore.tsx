@@ -22,6 +22,7 @@ class User {
 
   removeUser() {
     localStorage.removeItem("user");
+    localStorage.removeItem("social");
   }
 }
 

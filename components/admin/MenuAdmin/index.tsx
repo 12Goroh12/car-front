@@ -1,14 +1,14 @@
 import { FC } from "react";
 import MenuItem from "../MenuItem";
-import { IUser } from "../../../types/user";
 import { Email, MenuBlock, MenuName, Modal, Name } from "./style";
 
 interface IMenuAdminProps {
-  info: IUser;
+  email: string;
+  name: string;
 }
 
-const MenuAdmin: FC<IMenuAdminProps> = ({ info }) => {
-  const nameAdmin = info?.name.slice(0, 1);
+const MenuAdmin: FC<IMenuAdminProps> = ({ email, name }) => {
+  const nameAdmin = name.slice(0, 1);
 
   return (
     <Modal>
@@ -16,7 +16,7 @@ const MenuAdmin: FC<IMenuAdminProps> = ({ info }) => {
         <MenuName>
           <Name>{nameAdmin}</Name>
           <Email>
-            Email: <span>{info?.email}</span>
+            Email: <span>{email}</span>
           </Email>
         </MenuName>
         <MenuItem />

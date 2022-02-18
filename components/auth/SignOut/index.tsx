@@ -7,7 +7,7 @@ import { FiSettings } from "react-icons/fi";
 import { Button, Container, Logo, Menu, Settings } from "../../Navbar/style";
 import { Roles, WebsiteUrls } from "../../../types/enums";
 import { signOut } from "next-auth/react";
-import { ChangeEvent, FC, useState } from "react";
+import { FC, useState } from "react";
 import { IUser } from "../../../types/user";
 import { NextRouter, useRouter } from "next/router";
 
@@ -44,7 +44,7 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
             <Settings onClick={popupHandler}>
               <FiSettings />
             </Settings>
-            {popup && <MenuAdmin info={admin} />}
+            {popup && <MenuAdmin name={admin?.name} email={admin?.email} />}
           </>
         )}
         <Button onClick={signOutHandler}>Sign out</Button>
