@@ -27,6 +27,10 @@ class User {
     this.users = this.users = user;
     localStorage.setItem("user", JSON.stringify(user));
   }
+
+  removeUser() {
+    localStorage.removeItem("user");
+  }
 }
 
 const userStore = new User();

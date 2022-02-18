@@ -3,12 +3,13 @@ import Image from "next/image";
 import logo from "../../../public/tesla.svg";
 import { Button, Container, Logo } from "../../Navbar/style";
 import { WebsiteUrls } from "../../../types/enums";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { FC } from "react";
+import userStore from "../../../store/userStore";
 
 const SignOut: FC = () => {
-  const signOutHandle = () => {
-    localStorage.removeItem("user");
+  const signOutHandler = () => {
+    userStore.removeUser();
     signOut();
   };
 
@@ -21,7 +22,7 @@ const SignOut: FC = () => {
           </a>
         </Link>
       </Logo>
-      <Button onClick={signOutHandle}>Sign out</Button>
+      <Button onClick={signOutHandler}>Sign out</Button>
     </Container>
   );
 };
