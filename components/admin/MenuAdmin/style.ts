@@ -4,17 +4,17 @@ export const Modal = styled.div`
   max-width: 300px;
   width: 100%;
   padding: 8px;
-  position: fixed;
-  top: 50px;
-  right: 145px;
+  position: absolute;
+  top: 60px;
+  right: 142px;
   background-color: white;
   border-radius: 10px;
 
   @media (max-width: 700px) {
     position: fixed;
-    top: 50px;
+    top: 65px;
     width: 200px;
-    right: 17px;
+    right: 86px;
   }
 `;
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import MenuItem from "../MenuItem";
 import { Email, MenuBlock, MenuName, Modal, Name } from "./style";
+import MenuItem from "../MenuItem";
 
 interface IMenuAdminProps {
   email: string;

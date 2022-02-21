@@ -1,16 +1,24 @@
 import { FC, ReactNode } from "react";
 import { Wrapper } from "./style";
+import { observer } from "mobx-react-lite";
 import Navbar from "../Navbar";
+import carStore from "../../store/carStore";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => (
-  <>
-    <Navbar />
-    <Wrapper>{children}</Wrapper>
-  </>
-);
+const Layout: FC<LayoutProps> = ({ children }) => {
+  const popupHide = () => {
+    carStore.hidePopup();
+  };
 
-export default Layout;
+  return (
+    <>
+      <Navbar />
+      <Wrapper onClick={popupHide}>{children}</Wrapper>
+    </>
+  );
+};
+
+export default observer(Layout);

@@ -1,11 +1,11 @@
 import axios from "axios";
+import userStore from "../../store/userStore";
+import LoginComponent from "../LoginComponent";
 import { observer } from "mobx-react-lite";
 import { NextRouter, useRouter } from "next/router";
 import { FC, useState } from "react";
-import userStore from "../../store/userStore";
 import { BaseUrl, WebsiteUrls } from "../../types/enums";
 import { Values } from "../../types/formik";
-import LoginComponent from "../LoginComponent";
 
 const Login: FC = () => {
   const [exist, setExist] = useState(false);
