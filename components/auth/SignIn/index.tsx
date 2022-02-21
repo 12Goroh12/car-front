@@ -18,7 +18,7 @@ const SignIn: FC = () => {
       <Logo>
         <Link href={WebsiteUrls.HOME}>
           <a>
-            <Image src={logo} alt="logo" width={130} height={30} />
+            <Image src={logo} alt="logo" width={130} height={50} />
           </a>
         </Link>
       </Logo>

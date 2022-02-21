@@ -9,6 +9,8 @@ export const Container = styled.div`
   align-items: center;
 `;
 export const Logo = styled.div`
+  position: relative;
+  left: -11px;
   cursor: pointer;
 `;
 export const Menu = styled.div`

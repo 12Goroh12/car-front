@@ -47,7 +47,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
   });
 
   return (
-    <Container>
+    <Container imgUrl='/images/solar-panel.jpg'>
       <Wrapper>
         <Formik
           initialValues={{

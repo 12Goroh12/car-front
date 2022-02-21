@@ -21,7 +21,7 @@ const Social: NextPage<ISocialProps> = ({ providers }) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper imgUrl="/images/connected.jpg">
       <Head>
         <title>Social page</title>
       </Head>

@@ -15,7 +15,7 @@ const Error: NextPage = () => {
   }, [router]);
 
   return (
-    <Wrap>
+    <Wrap imgUrl="/images/audio.jpg">
       <Head>
         <title>Error</title>
       </Head>
