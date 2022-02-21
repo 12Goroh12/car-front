@@ -3,6 +3,7 @@ import Image from "next/image";
 import logo from "../../../public/tesla.svg";
 import MenuAdmin from "../../admin/MenuAdmin";
 import userStore from "../../../store/userStore";
+import Categories from "../../Сategories";
 import { FiSettings } from "react-icons/fi";
 import { Button, Container, Logo, Menu, Settings } from "../../Navbar/style";
 import { Roles, WebsiteUrls } from "../../../types/enums";
@@ -34,10 +35,11 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
       <Logo>
         <Link href={WebsiteUrls.HOME}>
           <a>
-            <Image src={logo} alt="logo" width={130} height={30} />
+            <Image src={logo} alt="logo" width={130} height={50} />
           </a>
         </Link>
       </Logo>
+      <Categories />
       <Menu>
         {admin?.roles[0] === Roles.ADMIN && (
           <>

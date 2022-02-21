@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ imgUrl: string }>`
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url(${(props) => props.imgUrl}) center center/cover no-repeat;
 `;
 
 export const Title = styled.h1`

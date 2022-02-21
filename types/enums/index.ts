@@ -3,6 +3,9 @@ export enum WebsiteUrls {
   SOCIAL = "/social",
   REGISTRATION = "/registration",
   LOGIN = "/login",
+  USED = "/used",
+  NEW = "/new",
+  NEW_ADN_USED = "/all",
 }
 
 export enum BaseUrl {
@@ -13,3 +16,4 @@ export enum Roles {
   ADMIN = "ADMIN",
   USER = "USER",
 }
+
