@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/tesla.svg";
+import carStore from "../../../store/carStore";
 import MenuAdmin from "../../admin/MenuAdmin";
 import userStore from "../../../store/userStore";
 import Categories from "../../Сategories";
@@ -8,9 +9,10 @@ import { FiSettings } from "react-icons/fi";
 import { Button, Container, Logo, Menu, Settings } from "../../Navbar/style";
 import { Roles, WebsiteUrls } from "../../../types/enums";
 import { signOut } from "next-auth/react";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { IUser } from "../../../types/user";
 import { NextRouter, useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
 
 interface ISignOutProps {
   admin?: IUser;
@@ -18,7 +20,6 @@ interface ISignOutProps {
 
 const SignOut: FC<ISignOutProps> = ({ admin }) => {
   const router: NextRouter = useRouter();
-  const [popup, setPopup] = useState(false);
 
   const signOutHandler = () => {
     userStore.removeUser();
@@ -27,7 +28,7 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
   };
 
   const popupHandler = () => {
-    setPopup(!popup);
+    carStore.togglePopup();
   };
 
   return (
@@ -46,7 +47,9 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
             <Settings onClick={popupHandler}>
               <FiSettings />
             </Settings>
-            {popup && <MenuAdmin name={admin?.name} email={admin?.email} />}
+            {carStore.popup && (
+              <MenuAdmin name={admin?.name} email={admin?.email} />
+            )}
           </>
         )}
         <Button onClick={signOutHandler}>Sign out</Button>
@@ -55,4 +58,4 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
   );
 };
 
-export default SignOut;
+export default observer(SignOut);
