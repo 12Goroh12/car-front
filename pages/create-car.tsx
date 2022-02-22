@@ -16,11 +16,27 @@ import {
   RowBlock,
   Text,
 } from "../styles/create-car";
-import { Formik, FormikHelpers } from "formik";
+import { Formik, FormikHelpers, FormikProps } from "formik";
 import { ICar } from "../types/cars";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
 
 const CreateCar: NextPage = () => {
+  const formikRef = useRef<FormikProps<ICar>>(null);
+
+  const submitHandler = (
+    values: ICar,
+    { setSubmitting, resetForm }: FormikHelpers<ICar>
+  ) => {
+    carStore.addCarInStore(values);
+    resetForm();
+    setSubmitting(false);
+  };
+
+  const changeFiles = (e: ChangeEvent<HTMLInputElement>) => {
+    formikRef.current &&
+      formikRef.current.setFieldValue("file", e.target.files);
+  };
+
   return (
     <>
       <Head>
@@ -28,17 +44,11 @@ const CreateCar: NextPage = () => {
       </Head>
       <Container imgUrl="/img/image-2.png">
         <Formik
+          innerRef={formikRef}
           initialValues={carStore.car}
-          onSubmit={(
-            values: ICar,
-            { setSubmitting, resetForm }: FormikHelpers<ICar>
-          ) => {
-            carStore.addCarInStore(values);
-            resetForm();
-            setSubmitting(false);
-          }}
+          onSubmit={submitHandler}
         >
-          {({ values, setFieldValue }) => (
+          {({ values }) => (
             <Block>
               <BlockImage image="/images/solar-panel.jpg">
                 <p>
@@ -88,9 +98,7 @@ const CreateCar: NextPage = () => {
                       name="image"
                       id="image"
                       type="file"
-                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setFieldValue("file", e.target.files)
-                      }
+                      onChange={changeFiles}
                     />
                     <span>Upload</span>
                   </FileLabel>
