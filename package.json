@@ -12,6 +12,7 @@
     "@next-auth/mongodb-adapter": "^1.0.1",
     "@types/mongodb": "^4.0.7",
     "axios": "^0.26.0",
+    "cloudinary-react": "^1.7.1",
     "formik": "^2.2.9",
     "mobx": "^6.3.13",
     "mobx-react-devtools": "^6.1.1",

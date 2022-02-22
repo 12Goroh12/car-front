@@ -5,6 +5,6 @@ export interface ICar {
   speed: number;
   reserve: number;
   used: boolean;
-  mileage: number;
-  image: string[];
+  mileage?: number;
+  file: string[];
 }
