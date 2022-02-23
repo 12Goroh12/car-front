@@ -8,12 +8,13 @@ class Cars {
   cars: ICar[] = [];
   car: ICar = {
     name: "",
-    price: 0,
+    price: null,
     description: "",
-    speed: 0,
-    reserve: 0,
+    speed: null,
+    reserve: null,
     used: false,
-    mileage: 0,
+    newcar: false,
+    mileage: null,
     file: [],
   };
 
@@ -42,6 +43,7 @@ class Cars {
               speed: values.speed,
               reserve: values.reserve,
               mileage: values.mileage,
+              newcar: values.newcar,
             })
             .then((response) => console.log(response.data));
         })

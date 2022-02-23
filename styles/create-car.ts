@@ -105,13 +105,16 @@ export const Input = styled(Field)`
 `;
 
 export const CheckboxLabel = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  p {
+    font-size: 14px;
+  }
 `;
 
 export const CeckboxSection = styled.div`
-  width: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
   p {
     cursor: pointer;
@@ -162,4 +165,9 @@ export const Button = styled.button`
   &:hover {
     opacity: 0.8;
   }
+`;
+
+export const Error = styled.div`
+  color: #df0000;
+  font-size: 12px;
 `;

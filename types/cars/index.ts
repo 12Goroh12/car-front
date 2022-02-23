@@ -1,10 +1,11 @@
 export interface ICar {
   name: string;
-  price: number;
+  price: number | null;
   description: string;
-  speed: number;
-  reserve: number;
+  speed: number | null;
+  reserve: number | null;
   used: boolean;
-  mileage?: number;
+  mileage?: number | null;
+  newcar: boolean;
   file: string[];
 }

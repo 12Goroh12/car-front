@@ -1,6 +1,10 @@
 import Head from "next/head";
 import carStore from "../store/carStore";
 import { NextPage } from "next";
+import { ErrorMessage, Formik, FormikHelpers, FormikProps } from "formik";
+import { ICar } from "../types/cars";
+import { ChangeEvent, useRef } from "react";
+import { validationSchemaCreate } from "../utils";
 import {
   Block,
   BlockImage,
@@ -8,6 +12,7 @@ import {
   CeckboxSection,
   CheckboxLabel,
   Container,
+  Error,
   File,
   FileLabel,
   FormBlock,
@@ -16,9 +21,6 @@ import {
   RowBlock,
   Text,
 } from "../styles/create-car";
-import { Formik, FormikHelpers, FormikProps } from "formik";
-import { ICar } from "../types/cars";
-import { ChangeEvent, useRef } from "react";
 
 const CreateCar: NextPage = () => {
   const formikRef = useRef<FormikProps<ICar>>(null);
@@ -27,8 +29,8 @@ const CreateCar: NextPage = () => {
     values: ICar,
     { setSubmitting, resetForm }: FormikHelpers<ICar>
   ) => {
-    carStore.addCarInStore(values);
     resetForm();
+    carStore.addCarInStore(values);
     setSubmitting(false);
   };
 
@@ -42,13 +44,16 @@ const CreateCar: NextPage = () => {
       <Head>
         <title>Create page</title>
       </Head>
+
       <Container imgUrl="/img/image-2.png">
         <Formik
+          validationSchema={validationSchemaCreate}
           innerRef={formikRef}
           initialValues={carStore.car}
           onSubmit={submitHandler}
+          validateOnBlur
         >
-          {({ values }) => (
+          {({ values, handleChange, handleBlur, handleSubmit, isValid }) => (
             <Block>
               <BlockImage image="/images/solar-panel.jpg">
                 <p>
@@ -60,41 +65,123 @@ const CreateCar: NextPage = () => {
                 <Text>Ride Free - This is our motto</Text>
                 <section>
                   <Label htmlFor="name">Name</Label>
-                  <Input name="name" />
+                  <Input
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    name="name"
+                    id="name"
+                    type="text"
+                  />
+                  <ErrorMessage name="name">
+                    {(msg: string) => <Error>{msg}</Error>}
+                  </ErrorMessage>
                 </section>
                 <RowBlock>
                   <section>
                     <Label htmlFor="price">Price</Label>
-                    <Input name="price" type="number" />
+                    <Input
+                      value={values.price}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      name="price"
+                      id="price"
+                      type="number"
+                    />
+                    <ErrorMessage name="price">
+                      {(msg: string) => <Error>{msg}</Error>}
+                    </ErrorMessage>
                   </section>
                   <section>
                     <Label htmlFor="speed">Speed</Label>
-                    <Input name="speed" type="number" />
+                    <Input
+                      value={values.speed}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      name="speed"
+                      id="speed"
+                      type="number"
+                    />
+                    <ErrorMessage name="speed">
+                      {(msg: string) => <Error>{msg}</Error>}
+                    </ErrorMessage>
                   </section>
                   <section>
                     <Label htmlFor="reserve">Reserve</Label>
-                    <Input name="reserve" type="number" />
+                    <Input
+                      value={values.reserve}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      name="reserve"
+                      id="reserve"
+                      type="number"
+                    />
+                    <ErrorMessage name="reserve">
+                      {(msg: string) => <Error>{msg}</Error>}
+                    </ErrorMessage>
                   </section>
                 </RowBlock>
                 <section>
                   <Label htmlFor="description">Description</Label>
-                  <Input name="description" type="text" />
+                  <Input
+                    value={values.description}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    name="description"
+                    type="text"
+                  />
+                  <ErrorMessage name="description">
+                    {(msg: string) => <Error>{msg}</Error>}
+                  </ErrorMessage>
                 </section>
                 <CeckboxSection>
                   <CheckboxLabel htmlFor="used">
                     <p>Used</p>
-                    <Input name="used" id="used" type="checkbox" />
+                    <Input
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      name="used"
+                      id="used"
+                      type="checkbox"
+                    />
+                    <ErrorMessage name="used">
+                      {(msg: string) => <Error>{msg}</Error>}
+                    </ErrorMessage>
+                  </CheckboxLabel>
+                  <CheckboxLabel htmlFor="newcar">
+                    <p>New Car</p>
+                    <Input
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      name="newcar"
+                      id="newcar"
+                      type="checkbox"
+                    />
+                    <ErrorMessage name="newcar">
+                      {(msg: string) => <Error>{msg}</Error>}
+                    </ErrorMessage>
                   </CheckboxLabel>
                 </CeckboxSection>
                 {values.used && (
                   <section>
                     <Label htmlFor="mileage">Mileage</Label>
-                    <Input name="mileage" type="number" />
+                    <Input
+                      value={values.mileage}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      name="mileage"
+                      id="mileage"
+                      type="number"
+                    />
+                    <ErrorMessage name="mileage">
+                      {(msg: string) => <Error>{msg}</Error>}
+                    </ErrorMessage>
                   </section>
                 )}
                 <section>
                   <FileLabel htmlFor="file">
                     <File
+                      onBlur={handleBlur}
                       name="image"
                       id="image"
                       type="file"
@@ -104,14 +191,19 @@ const CreateCar: NextPage = () => {
                   </FileLabel>
                 </section>
                 <section>
-                  <Button>Create car</Button>
+                  <Button
+                    onClick={handleSubmit}
+                    disabled={!isValid}
+                    type="submit"
+                  >
+                    Create car
+                  </Button>
                 </section>
               </FormBlock>
             </Block>
           )}
         </Formik>
       </Container>
-      ;
     </>
   );
 };
