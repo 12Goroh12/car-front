@@ -13,9 +13,9 @@ import {
   Error,
   Account,
 } from "../../styles/authpage";
-import * as yup from "yup";
 import { Values } from "../../types/formik";
 import { WebsiteUrls } from "../../types/enums";
+import { validationSchemaLogin } from "../../utils";
 
 interface ILoginComponentProps {
   heading: string;
@@ -38,16 +38,18 @@ const LoginComponent: FC<ILoginComponentProps> = ({
 }) => {
   const accountBack =
     account === "Back" ? WebsiteUrls.REGISTRATION : WebsiteUrls.LOGIN;
-  const requiredField = yup.string().required();
 
-  const validationSchema = yup.object().shape({
-    name: requiredField,
-    password: requiredField,
-    email: requiredField,
-  });
+  const submit = (
+    values: Values,
+    { setSubmitting, resetForm }: FormikHelpers<Values>
+  ) => {
+    submitHandler(values);
+    setSubmitting(false);
+    resetForm();
+  };
 
   return (
-    <Container imgUrl='/images/solar-panel.jpg'>
+    <Container imgUrl="/images/solar-panel.jpg">
       <Wrapper>
         <Formik
           initialValues={{
@@ -55,16 +57,9 @@ const LoginComponent: FC<ILoginComponentProps> = ({
             password: "",
             email: "",
           }}
-          validationSchema={validationSchema}
+          validationSchema={validationSchemaLogin}
           validateOnBlur
-          onSubmit={async (
-            values: Values,
-            { setSubmitting, resetForm }: FormikHelpers<Values>
-          ) => {
-            submitHandler(values);
-            setSubmitting(false);
-            resetForm();
-          }}
+          onSubmit={submit}
         >
           {({
             values,
