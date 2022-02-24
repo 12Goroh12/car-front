@@ -25,12 +25,13 @@ class Cars {
 
   async getCarsInStore() {
     try {
+      this.isLoading = true;
       const response = await axios.get(`${BaseUrl.URL}cars/get`);
       this.cars = [...response.data];
-      this.isLoading = true;
-      this.isLoading = false;
     } catch (error) {
       console.log(error);
+    } finally {
+      this.isLoading = false;
     }
   }
 

@@ -19,7 +19,7 @@ const UsedAndNew: NextPage = observer(() => {
       <Head>
         <title>New and Used</title>
       </Head>
-      <Container isLoading={carStore.isLoading} imgUrl="/tesla-page.jpg">
+      <Container imgUrl="/tesla-page.jpg">
         {carStore.isLoading ? (
           <Loading />
         ) : (
