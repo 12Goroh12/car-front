@@ -1,5 +1,7 @@
 import Head from "next/head";
 import carStore from "../store/carStore";
+import { ImCheckmark } from "react-icons/im";
+import { FiUpload } from "react-icons/fi";
 import { NextPage } from "next";
 import { ErrorMessage, Formik, FormikHelpers, FormikProps } from "formik";
 import { ICar } from "../types/cars";
@@ -21,9 +23,12 @@ import {
   RowBlock,
   Text,
 } from "../styles/create-car";
+import { NextRouter, useRouter } from "next/router";
+import { WebsiteUrls } from "../types/enums";
 
 const CreateCar: NextPage = () => {
   const formikRef = useRef<FormikProps<ICar>>(null);
+  const router: NextRouter = useRouter();
 
   const submitHandler = (
     values: ICar,
@@ -32,6 +37,7 @@ const CreateCar: NextPage = () => {
     resetForm();
     carStore.addCarInStore(values);
     setSubmitting(false);
+    router.push(WebsiteUrls.HOME);
   };
 
   const changeFiles = (e: ChangeEvent<HTMLInputElement>) => {
@@ -148,19 +154,6 @@ const CreateCar: NextPage = () => {
                       {(msg: string) => <Error>{msg}</Error>}
                     </ErrorMessage>
                   </CheckboxLabel>
-                  <CheckboxLabel htmlFor="newcar">
-                    <p>New Car</p>
-                    <Input
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      name="newcar"
-                      id="newcar"
-                      type="checkbox"
-                    />
-                    <ErrorMessage name="newcar">
-                      {(msg: string) => <Error>{msg}</Error>}
-                    </ErrorMessage>
-                  </CheckboxLabel>
                 </CeckboxSection>
                 {values.used && (
                   <section>
@@ -187,7 +180,13 @@ const CreateCar: NextPage = () => {
                       type="file"
                       onChange={changeFiles}
                     />
-                    <span>Upload</span>
+                    <span>
+                      {values.file[0] ? (
+                        <ImCheckmark size={20} />
+                      ) : (
+                        <FiUpload size={20} />
+                      )}
+                    </span>
                   </FileLabel>
                 </section>
                 <section>

@@ -114,7 +114,7 @@ export const CeckboxSection = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
 
   p {
     cursor: pointer;
@@ -145,7 +145,7 @@ export const FileLabel = styled.label`
   overflow: hidden;
   position: relative;
   text-align: center;
-  width: 120px;
+  width: 70px;
 
   span {
     cursor: pointer;

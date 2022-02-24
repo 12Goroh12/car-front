@@ -20,11 +20,13 @@ interface ISignOutProps {
 
 const SignOut: FC<ISignOutProps> = ({ admin }) => {
   const router: NextRouter = useRouter();
+  const user = admin?.roles[0] === Roles.USER;
+  const isAdmin = admin?.roles[0] !== Roles.ADMIN;
 
   const signOutHandler = () => {
     userStore.removeUser();
-    signOut();
     router.push(WebsiteUrls.HOME);
+    isAdmin && user && signOut();
   };
 
   const popupHandler = () => {

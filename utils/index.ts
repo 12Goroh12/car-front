@@ -26,7 +26,6 @@ export const validationSchemaCreate = yup.object().shape({
   speed: requiredFieldNull,
   reserve: requiredFieldNull,
   used: yup.bool().required(),
-  newcar: yup.bool().required(),
   mileage: yup.string().when("used", {
     is: (used: boolean) => used === true,
     then: yup.string().required().min(3).nullable(),
