@@ -11,7 +11,6 @@ export const List = styled.ul`
   }
 `;
 
-
 export const MediaMenu = styled.div`
   @media (max-width: 650px) {
     display: flex;
@@ -36,14 +35,14 @@ export const MediaMenu = styled.div`
   }
 `;
 
-export const ItemMenu = styled.img<{ rotate: boolean }>`
+export const ItemMenu = styled.img<{ visible: boolean }>`
   display: none;
 
   @media (max-width: 650px) {
     display: block;
     cursor: pointer;
     transition: all 0.25s ease-in-out;
-    transform: rotate(${(props) => (props.rotate ? "180deg" : "0deg")});
+    transform: rotate(${(props) => (props.visible ? "180deg" : "0deg")});
   }
 `;
 

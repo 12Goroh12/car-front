@@ -5,6 +5,7 @@ import { BaseUrl, KeyCloudinary } from "../types/enums";
 
 class Cars {
   popup: boolean = false;
+  isLoading: boolean = false;
   cars: ICar[] = [];
   car: ICar = {
     name: "",
@@ -14,21 +15,33 @@ class Cars {
     reserve: null,
     used: false,
     newcar: false,
-    mileage: null,
     file: [],
+    _id: "",
   };
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  addCarInStore = (values: ICar) => {
+  async getCarsInStore() {
+    try {
+      this.isLoading = true;
+      const response = await axios.get(`${BaseUrl.URL}cars/get`);
+      this.cars = [...response.data];
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  addCarInStore = async (values: ICar) => {
     try {
       const formData = new FormData();
       formData.append("file", values.file[0]);
       formData.append("upload_preset", KeyCloudinary.KEY);
 
-      axios
+      await axios
         .post(BaseUrl.CLOUDINARY, formData)
         .then((response) => {
           const fileName = response.data.public_id;
@@ -45,12 +58,19 @@ class Cars {
               mileage: values.mileage,
               newcar: values.newcar,
             })
-            .then((response) => console.log(response.data));
+            .then((response) => {
+              this.setCarsInStore(response.data.newCar);
+              console.log(response.data);
+            });
         })
         .catch(({ response }) => console.log(response.error));
     } catch (error) {
       console.log(error);
     }
+  };
+
+  setCarsInStore = (car: ICar) => {
+    this.cars.push(car);
   };
 
   togglePopup() {

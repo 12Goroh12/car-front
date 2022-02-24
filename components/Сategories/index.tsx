@@ -16,7 +16,7 @@ const Сategories: FC = () => {
   return (
     <>
       <ItemMenu
-        rotate={isVisible}
+        visible={isVisible}
         src="/images/Vector.svg"
         onClick={visibleMenu}
       />

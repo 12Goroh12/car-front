@@ -7,5 +7,6 @@ export interface ICar {
   used: boolean;
   mileage?: number | null;
   newcar: boolean;
-  file: string[];
+  file: File[] | string[];
+  _id: string;
 }
