@@ -3,14 +3,15 @@ import carStore from "../store/carStore";
 import CarsComponent from "../components/CarsComponent";
 import { observer } from "mobx-react-lite";
 import { NextPage } from "next";
+import { filterNewCars } from "../utils";
 
-const UsedAndNew: NextPage = observer(() => (
+const NewCar: NextPage = observer(() => (
   <>
     <Head>
-      <title>New and Used</title>
+      <title>New</title>
     </Head>
-    <CarsComponent cars={carStore.cars} />
+    <CarsComponent cars={filterNewCars(carStore.cars)} />
   </>
 ));
 
-export default UsedAndNew;
+export default NewCar;

@@ -1,6 +1,7 @@
 import { WebsiteUrls } from "./../types/enums/index";
 import { ICategories } from "../types/categories";
 import * as yup from "yup";
+import { ICar } from "../types/cars";
 
 export const categories: ICategories[] = [
   { id: 1, path: WebsiteUrls.NEW, name: "New" },
@@ -31,3 +32,9 @@ export const validationSchemaCreate = yup.object().shape({
     then: yup.string().required().min(3).nullable(),
   }),
 });
+
+export const filterNewCars = (items: ICar[]) =>
+  items.filter((car: ICar) => !car.used);
+
+export const filterUsedCars = (items: ICar[]) =>
+  items.filter((car: ICar) => car.used);
