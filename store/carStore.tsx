@@ -23,15 +23,19 @@ class Cars {
     makeAutoObservable(this);
   }
 
+  setLoading(payload: boolean) {
+    this.isLoading = payload;
+  }
+
   async getCarsInStore() {
     try {
-      this.isLoading = true;
+      this.setLoading(true);
       const response = await axios.get(`${BaseUrl.URL}cars/get`);
       this.cars = [...response.data];
     } catch (error) {
       console.log(error);
     } finally {
-      this.isLoading = false;
+      this.setLoading(false);
     }
   }
 

@@ -4,8 +4,11 @@ import CarsComponent from "../components/CarsComponent";
 import { observer } from "mobx-react-lite";
 import { NextPage } from "next";
 import { useEffect } from "react";
+import { ICar } from "../types/cars";
 
-const UsedAndNew: NextPage = observer(() => {
+const NewCar: NextPage = observer(() => {
+  const newCars = carStore.cars.filter((car: ICar) => !car.used);
+
   useEffect(() => {
     carStore.getCarsInStore();
   }, []);
@@ -13,11 +16,11 @@ const UsedAndNew: NextPage = observer(() => {
   return (
     <>
       <Head>
-        <title>New and Used</title>
+        <title>New</title>
       </Head>
-      <CarsComponent cars={carStore.cars} />
+      <CarsComponent cars={newCars} />
     </>
   );
 });
 
-export default UsedAndNew;
+export default NewCar;

@@ -47,11 +47,12 @@ export const Column = styled.div`
   @media (max-width: 1000px) {
     display: flex;
     flex-direction: column;
+    gap: 15px;
   }
 `;
 
 export const Name = styled.h1`
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
 
   @media (max-width: 765px) {
@@ -61,9 +62,10 @@ export const Name = styled.h1`
 
 export const Price = styled.div`
   text-align: center;
+  font-size: 14px;
 
   @media (max-width: 765px) {
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 
@@ -83,6 +85,10 @@ export const Speed = styled.div`
 export const SpeedBlock = styled.div`
   display: flex;
   flex-direction: column;
+
+  p {
+    font-size: 10px;
+  }
 
   span {
     font-size: 10px;
@@ -114,6 +120,8 @@ export const ReserveBlock = styled.div`
     font-weight: 300;
   }
 `;
+
+export const Mileage = styled.div``;
 
 export const TestDrive = styled.button`
   display: flex;

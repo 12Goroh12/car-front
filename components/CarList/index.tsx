@@ -15,11 +15,11 @@ import {
   TestDrive,
 } from "./style";
 
-interface IAllCarProps {
+interface ICarList {
   car: ICar;
 }
 
-const AllCarList: FC<IAllCarProps> = ({ car }) => {
+const CarList: FC<ICarList> = ({ car }) => {
   return (
     <List>
       <Image
@@ -46,10 +46,16 @@ const AllCarList: FC<IAllCarProps> = ({ car }) => {
             <span>0-100 кm/h</span>
           </SpeedBlock>
         </Speed>
+        {car.used && (
+          <SpeedBlock>
+            <span>mileage</span>
+            <p>{car.mileage}</p>
+          </SpeedBlock>
+        )}
       </Column>
       <TestDrive>Test Drive</TestDrive>
     </List>
   );
 };
 
-export default observer(AllCarList);
+export default observer(CarList);
