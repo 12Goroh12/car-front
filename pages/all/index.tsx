@@ -1,6 +1,6 @@
 import Head from "next/head";
-import carStore from "../store/carStore";
-import CarsComponent from "../components/CarsComponent";
+import carStore from "../../store/carStore";
+import CarsComponent from "../../components/CarsComponent";
 import { IObserverOptions, observer } from "mobx-react-lite";
 import { NextPage } from "next";
 
