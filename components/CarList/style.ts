@@ -125,9 +125,13 @@ export const Mileage = styled.div``;
 
 export const TestDrive = styled.button`
   display: flex;
-  padding: 5px;
+  padding: 10px;
   background-color: #171515;
   color: white;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   outline: none;
   border: none;
   border-radius: 8px;
@@ -139,6 +143,14 @@ export const TestDrive = styled.button`
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
-    width: 90%;
+
+    width: 70px;
   }
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 `;

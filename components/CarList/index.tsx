@@ -4,6 +4,7 @@ import { Image } from "cloudinary-react";
 import { ICar } from "../../types/cars";
 import { BaseUrl, KeyCloudinary } from "../../types/enums";
 import {
+  ButtonGroup,
   Column,
   List,
   Name,
@@ -14,20 +15,24 @@ import {
   SpeedBlock,
   TestDrive,
 } from "./style";
+import Link from "next/link";
+import { NextRouter, useRouter } from "next/router";
 
 interface ICarList {
   car: ICar;
 }
 
 const CarList: FC<ICarList> = ({ car }) => {
+  const { pathname }: NextRouter = useRouter();
+
   return (
     <List>
       <Image
-        alt={car.name}
-        width="350px"
-        height="300px"
         cloudName={KeyCloudinary.KEY}
         publicId={`${BaseUrl.CLOUDINARY_IMAGE}/${car.file[0]}`}
+        width={350}
+        height={300}
+        alt={car.name}
       />
       <Column>
         <Name>{car.name}</Name>
@@ -53,7 +58,14 @@ const CarList: FC<ICarList> = ({ car }) => {
           </SpeedBlock>
         )}
       </Column>
-      <TestDrive>Test Drive</TestDrive>
+      <ButtonGroup>
+        <TestDrive>Test Drive</TestDrive>
+        <TestDrive>
+          <Link href={`${pathname}/${car._id}`}>
+            <a>Details</a>
+          </Link>
+        </TestDrive>
+      </ButtonGroup>
     </List>
   );
 };
