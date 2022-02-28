@@ -6,7 +6,6 @@ export enum WebsiteUrls {
   USED = "/used",
   NEW = "/new",
   NEW_ADN_USED = "/all",
-  TEST_DRIVE = "/test-drive",
   CREATE_CAR = "/create-car",
 }
 

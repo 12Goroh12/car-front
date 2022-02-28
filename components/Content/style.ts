@@ -39,11 +39,12 @@ export const Button = styled.button`
   background-color: #171515;
   color: white;
   cursor: pointer;
+  transition: all 0.25s ease-in-out;
 
   &:hover {
     background-color: transparent;
-    border: 1px solid #df0000;
-    color: #df0000;
+    border: 1px solid white;
+    color: white;
   }
 
   @media (max-width: 500px) {
