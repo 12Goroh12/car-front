@@ -38,3 +38,4 @@ export const filterNewCars = (items: ICar[]) =>
 
 export const filterUsedCars = (items: ICar[]) =>
   items.filter((car: ICar) => car.used);
+
