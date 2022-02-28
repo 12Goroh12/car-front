@@ -54,7 +54,7 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
             <p>{carDetail?.speed} km</p>
             <span>0-100 кm/h</span>
           </Block>
-          {carDetail?.used === true && (
+          {carDetail?.used && (
             <Block>
               <span>mileage</span>
               <p>{carDetail?.mileage} km</p>
