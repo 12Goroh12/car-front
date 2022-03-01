@@ -43,8 +43,8 @@ export const Button = styled.button`
 
   &:hover {
     background-color: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid #df0000;
+    color: #df0000;
   }
 
   @media (max-width: 500px) {
