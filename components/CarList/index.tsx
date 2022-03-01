@@ -59,7 +59,6 @@ const CarList: FC<ICarList> = ({ car }) => {
         )}
       </Column>
       <ButtonGroup>
-        <TestDrive>Test Drive</TestDrive>
         <TestDrive>
           <Link href={`${pathname}/${car._id}`}>
             <a>Details</a>

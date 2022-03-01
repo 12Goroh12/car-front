@@ -12,6 +12,7 @@ import {
 import { ICar } from "../../types/cars";
 import { BaseUrl } from "../../types/enums";
 import Image from "next/image";
+import Modal from "../Modal";
 
 interface ICarDetailProps {
   carId: string;
@@ -65,7 +66,7 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
           <span>Price: {carDetail?.price} $</span>
         </Block>
       </Heading>
-      {modal && <p>Form test drive</p>}
+      {modal && <Modal setModal={setModal} />}
       <ButtonGroup>
         <Button onClick={showModal}>Test Drive</Button>
         <Button onClick={back}>Back</Button>

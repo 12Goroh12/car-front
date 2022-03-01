@@ -11,6 +11,7 @@ export const Container = styled.div<{ imgUrl: string }>`
 `;
 export const Heading = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -73,7 +74,8 @@ export const Button = styled.button`
 
   &:hover {
     background-color: transparent;
-    border: 1px solid white;
+    border: 1px solid #df0000;
+    color: #df0000;
   }
   &:active {
     background-color: #171515;

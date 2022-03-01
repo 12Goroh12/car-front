@@ -3,3 +3,10 @@ export interface Values {
   password: string;
   email: string;
 }
+
+export interface TestDrive {
+  name: string;
+  email: string;
+  phone: string;
+}
+

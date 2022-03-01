@@ -15,7 +15,7 @@ import {
 } from "../../styles/authpage";
 import { Values } from "../../types/formik";
 import { WebsiteUrls } from "../../types/enums";
-import { validationSchemaLogin } from "../../utils";
+import { initialValuesLogin, validationSchemaLogin } from "../../utils";
 
 interface ILoginComponentProps {
   heading: string;
@@ -52,11 +52,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
     <Container imgUrl="/images/solar-panel.jpg">
       <Wrapper>
         <Formik
-          initialValues={{
-            name: "",
-            password: "",
-            email: "",
-          }}
+          initialValues={initialValuesLogin}
           validationSchema={validationSchemaLogin}
           validateOnBlur
           onSubmit={submit}
