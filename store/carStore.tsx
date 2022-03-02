@@ -14,7 +14,6 @@ class Cars {
     speed: null,
     reserve: null,
     used: false,
-    newcar: false,
     file: [],
     _id: "",
   };
@@ -60,7 +59,6 @@ class Cars {
               speed: values.speed,
               reserve: values.reserve,
               mileage: values.mileage,
-              newcar: values.newcar,
             })
             .then((response) => {
               this.setCarsInStore(response.data.newCar);

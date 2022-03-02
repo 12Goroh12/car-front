@@ -10,20 +10,29 @@ import {
   SpeedBlock,
 } from "./style";
 import { ICar } from "../../types/cars";
-import { BaseUrl } from "../../types/enums";
+import { BaseUrl, Roles } from "../../types/enums";
 import Image from "next/image";
 import Modal from "../Modal";
+import CarEdit from "../CarEdit";
 
 interface ICarDetailProps {
   carId: string;
 }
 
 const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
+  let user;
   const { back }: NextRouter = useRouter();
   const [modal, setModal] = useState(false);
+  const [editForm, setEditForm] = useState(false);
   const [carDetail, setCarDetail] = useState<ICar>();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  if (typeof window !== "undefined") {
+    user = JSON.parse(localStorage.getItem("user") || "null");
+  }
 
   useEffect(() => {
+    setHasMounted(true);
     async function fetchDetailCar() {
       try {
         const { data } = await axios.get(`${BaseUrl.URL}cars/details/${carId}`);
@@ -35,8 +44,16 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
     fetchDetailCar();
   }, [carId]);
 
+  if (!hasMounted) {
+    return null;
+  }
+
   const showModal = () => {
     setModal(!modal);
+  };
+
+  const showEdit = () => {
+    setEditForm(!editForm);
   };
 
   return (
@@ -66,8 +83,12 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
           <span>Price: {carDetail?.price} $</span>
         </Block>
       </Heading>
+      {editForm && <CarEdit carId={carId} />}
       {modal && <Modal setModal={setModal} />}
       <ButtonGroup>
+        {user?.roles[0] === Roles.ADMIN && (
+          <Button onClick={showEdit}>Edit</Button>
+        )}
         <Button onClick={showModal}>Test Drive</Button>
         <Button onClick={back}>Back</Button>
       </ButtonGroup>

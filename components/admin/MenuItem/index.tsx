@@ -5,7 +5,6 @@ import { RiAddFill } from "react-icons/ri";
 import { WebsiteUrls } from "../../../types/enums";
 import { MenuCar, MenuList } from "./style";
 import carStore from "../../../store/carStore";
-import Link from "next/link";
 
 const MenuItem: FC = () => {
   const router: NextRouter = useRouter();
@@ -15,12 +14,15 @@ const MenuItem: FC = () => {
     router.push(WebsiteUrls.CREATE_CAR);
   };
 
+  const goToCarList = () => {
+    router.push(WebsiteUrls.NEW_ADN_USED);
+    carStore.hidePopup();
+  };
+
   return (
     <MenuCar>
       <MenuList>
-        <Link href={WebsiteUrls.NEW_ADN_USED}>
-          <a>List cars</a>
-        </Link>
+        <a onClick={goToCarList}>List cars</a>
         <span>{carStore.cars.length} pc</span>
       </MenuList>
       <MenuList onClick={createCar}>

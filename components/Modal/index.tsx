@@ -1,10 +1,12 @@
 import { Formik, FormikHelpers } from "formik";
 import { FC } from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { TestDrive } from "../../types/formik";
 import { initialValues, validationSchemaModal } from "../../utils";
 import {
   Block,
   Button,
+  CloseModal,
   Error,
   FormBlock,
   Input,
@@ -26,9 +28,16 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
     setModal(false);
   };
 
+  const closeModal = () => {
+    setModal(false);
+  };
+
   return (
     <Wrapper>
       <ModalForm>
+        <CloseModal onClick={closeModal}>
+          <RiCloseCircleFill size={30} />
+        </CloseModal>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchemaModal}
@@ -67,7 +76,7 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
                   value={values.email}
                   type="email"
                   name="email"
-                  placeholder="Enter email"
+                  placeholder="john@acme.com"
                 />
               </Block>
               <span>
@@ -81,7 +90,7 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
                   value={values.phone}
                   type="tel"
                   name="phone"
-                  placeholder="375(29) 000-00-00"
+                  placeholder="375 29 000-00-00"
                 />
               </Block>
               <span>

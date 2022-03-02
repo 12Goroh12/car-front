@@ -7,13 +7,40 @@ export const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  max-width: 360px;
   padding: 2rem;
   border-radius: 10px;
   background-color: white;
+  box-shadow: 0px 1px 10px -4px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 765px) {
+    padding: 10px;
+  }
 `;
 
 export const ModalForm = styled.div`
-  padding: 2rem;
+  padding: 1rem;
+`;
+
+export const CloseModal = styled.div`
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 10px;
+  left: 320px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 765px) {
+    top: 5px;
+    left: 288px;
+  }
 `;
 
 export const Block = styled.div`
@@ -27,6 +54,7 @@ export const FormBlock = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 
   span {
     margin-left: 70px;
