@@ -102,7 +102,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
               />
               {exist && <Error>{error}</Error>}
               {touched.email && errors.email && <Error>{errors.email}</Error>}
-              <Button onClick={handleSubmit} disabled={!isValid} type="submit">
+              <Button onClick={() => handleSubmit()} disabled={!isValid} type="submit">
                 Submit
               </Button>
             </FormBlock>

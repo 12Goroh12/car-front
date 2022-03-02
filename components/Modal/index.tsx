@@ -115,7 +115,7 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
               <span>
                 {touched.phone && errors.phone && <Error>{errors.phone}</Error>}
               </span>
-              <Button type="submit" disabled={!isValid} onClick={handleSubmit}>
+              <Button type="submit" disabled={!isValid} onClick={() => handleSubmit()}>
                 Test Drive
               </Button>
             </FormBlock>

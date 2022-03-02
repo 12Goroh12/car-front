@@ -200,7 +200,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
               )}
               <section>
                 <Button
-                  onClick={handleSubmit}
+                  onClick={() => handleSubmit()}
                   disabled={!isValid}
                   type="submit"
                 >

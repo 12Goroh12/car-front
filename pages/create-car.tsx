@@ -191,7 +191,7 @@ const CreateCar: NextPage = () => {
                 </section>
                 <section>
                   <Button
-                    onClick={handleSubmit}
+                    onClick={() => handleSubmit()}
                     disabled={!isValid}
                     type="submit"
                   >
