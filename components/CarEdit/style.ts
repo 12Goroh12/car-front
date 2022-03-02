@@ -17,8 +17,24 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Close = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+`;
+
 export const Block = styled.div`
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   max-width: 1200px;

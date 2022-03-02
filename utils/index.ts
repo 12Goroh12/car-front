@@ -19,7 +19,6 @@ export const validationSchemaLogin = yup.object().shape({
 });
 
 const requiredFieldNull = yup.string().required().min(3).nullable();
-const phoneRegExp: any = /(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?/;
 
 export const validationSchemaCreate = yup.object().shape({
   name: yup.string().required().min(3),
@@ -38,11 +37,7 @@ export const validationSchemaCreate = yup.object().shape({
 export const validationSchemaModal = yup.object().shape({
   name: requiredField,
   email: yup.string().email().required(),
-  phone: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required()
-    .min(12),
+  phone: yup.number().required().min(12),
 });
 
 export const filterNewCars = (items: ICar[]) =>
@@ -54,7 +49,7 @@ export const filterUsedCars = (items: ICar[]) =>
 export const initialValues: TestDrive = {
   name: "",
   email: "",
-  phone: "",
+  phone: 0,
 };
 
 export const initialValuesLogin: Values = {
