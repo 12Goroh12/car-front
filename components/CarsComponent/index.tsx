@@ -8,7 +8,6 @@ import { ICar } from "../../types/cars";
 import { NextRouter, useRouter } from "next/router";
 import { WebsiteUrls } from "../../types/enums";
 import { observer } from "mobx-react-lite";
-import { toJS } from "mobx";
 
 interface ICarsComponentProps {
   cars: ICar[];

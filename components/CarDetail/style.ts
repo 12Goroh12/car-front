@@ -20,7 +20,7 @@ export const Heading = styled.div`
   border-radius: 1rem;
   text-align: center;
   gap: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
 
   p {
     font-size: 22px;
@@ -64,7 +64,7 @@ export const ButtonGroup = styled.div`
 export const Button = styled.button`
   background-color: #171515;
   outline: none;
-  width: 50%;
+  width: 20%;
   border: none;
   padding: 10px;
   color: white;
@@ -79,5 +79,11 @@ export const Button = styled.button`
   }
   &:active {
     background-color: #171515;
+    color: white;
+    border: none;
+  }
+
+  @media (max-width: 800px) {
+    width: 50%;
   }
 `;
