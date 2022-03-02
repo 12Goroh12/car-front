@@ -1,7 +1,14 @@
 import axios from "axios";
-import { ErrorMessage, Formik, FormikHelpers } from "formik";
-import { FC, useEffect, useState } from "react";
 import carStore from "../../store/carStore";
+import { ErrorMessage, Formik, FormikHelpers } from "formik";
+import {
+  ChangeEvent,
+  FC,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   Block,
   FormBlock,
@@ -13,18 +20,24 @@ import {
   CeckboxSection,
   CheckboxLabel,
   Button,
+  Close,
 } from "./style";
 import { ICar } from "../../types/cars";
-import { BaseUrl } from "../../types/enums";
+import { BaseUrl, WebsiteUrls } from "../../types/enums";
 import { validationSchemaCreate } from "../../utils";
 import { Wrapper } from "./style";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { NextRouter, useRouter } from "next/router";
 
 interface ICarEditProps {
   carId: string;
+  setEditForm: (value: boolean | ((prev: boolean) => boolean)) => void;
 }
 
-const CarEdit: FC<ICarEditProps> = ({ carId }) => {
+const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
   const [car, setCar] = useState<ICar>();
+  const router: NextRouter = useRouter();
+  const editRef = useRef<HTMLDivElement>(null);
 
   const submit = async (
     values: ICar,
@@ -34,10 +47,36 @@ const CarEdit: FC<ICarEditProps> = ({ carId }) => {
       await axios.put(`${BaseUrl.URL}cars/edit/${carId}`, values);
       setSubmitting(false);
       resetForm();
+      setEditForm(false);
+      router.push(WebsiteUrls.NEW_ADN_USED);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const closeEditForm = () => {
+    setEditForm(false);
+  };
+
+  const handleOutsideClick = useCallback(
+    (event) => {
+      console.log(event.path);
+
+      const path = event.path || (event.composedPath && event.composedPath());
+      if (!path.includes(editRef.current)) {
+        setEditForm(false);
+      }
+    },
+    [setEditForm]
+  );
+
+  useEffect(() => {
+    document.body.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.body.removeEventListener("click", handleOutsideClick);
+    };
+  }, [handleOutsideClick]);
 
   useEffect(() => {
     async function fetchDetailCar() {
@@ -52,7 +91,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId }) => {
   }, [carId]);
 
   return (
-    <Wrapper>
+    <Wrapper ref={editRef}>
       <Formik
         initialValues={carStore.car}
         validationSchema={validationSchemaCreate}
@@ -61,6 +100,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId }) => {
       >
         {({ values, handleChange, handleBlur, handleSubmit, isValid }) => (
           <Block>
+            <Close onClick={closeEditForm}>
+              <RiCloseCircleFill size={30} />
+            </Close>
             <FormBlock>
               <Text>To change the data</Text>
               <section>

@@ -1,5 +1,5 @@
 import { Formik, FormikHelpers } from "formik";
-import { FC } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { TestDrive } from "../../types/formik";
 import { initialValues, validationSchemaModal } from "../../utils";
@@ -19,6 +19,7 @@ interface IModalProps {
 }
 
 const Modal: FC<IModalProps> = ({ setModal }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
   const submit = (
     values: TestDrive,
     { setSubmitting, resetForm }: FormikHelpers<TestDrive>
@@ -32,8 +33,26 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
     setModal(false);
   };
 
+  const handleOutsideClick = useCallback(
+    (event) => {
+      const path = event.path || (event.composedPath && event.composedPath());
+      if (!path.includes(modalRef.current)) {
+        setModal(false);
+      }
+    },
+    [setModal]
+  );
+
+  useEffect(() => {
+    document.body.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.body.removeEventListener("click", handleOutsideClick);
+    };
+  }, [handleOutsideClick]);
+
   return (
-    <Wrapper>
+    <Wrapper ref={modalRef}>
       <ModalForm>
         <CloseModal onClick={closeModal}>
           <RiCloseCircleFill size={30} />
@@ -87,8 +106,8 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
                 <Input
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.phone}
-                  type="tel"
+                  value={values.phone || ""}
+                  type="number"
                   name="phone"
                   placeholder="375 29 000-00-00"
                 />

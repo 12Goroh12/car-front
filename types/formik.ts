@@ -7,6 +7,5 @@ export interface Values {
 export interface TestDrive {
   name: string;
   email: string;
-  phone: string;
+  phone: number;
 }
-

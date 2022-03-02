@@ -83,7 +83,7 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
           <span>Price: {carDetail?.price} $</span>
         </Block>
       </Heading>
-      {editForm && <CarEdit carId={carId} />}
+      {editForm && <CarEdit setEditForm={setEditForm} carId={carId} />}
       {modal && <Modal setModal={setModal} />}
       <ButtonGroup>
         {user?.roles[0] === Roles.ADMIN && (
