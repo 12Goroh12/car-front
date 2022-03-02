@@ -1,14 +1,7 @@
 import axios from "axios";
 import carStore from "../../store/carStore";
 import { ErrorMessage, Formik, FormikHelpers } from "formik";
-import {
-  ChangeEvent,
-  FC,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import {
   Block,
   FormBlock,
