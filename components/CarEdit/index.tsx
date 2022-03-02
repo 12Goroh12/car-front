@@ -60,8 +60,6 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
 
   const handleOutsideClick = useCallback(
     (event) => {
-      console.log(event.path);
-
       const path = event.path || (event.composedPath && event.composedPath());
       if (!path.includes(editRef.current)) {
         setEditForm(false);
@@ -76,7 +74,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
     return () => {
       document.body.removeEventListener("click", handleOutsideClick);
     };
-  }, [handleOutsideClick]);
+  }, []);
 
   useEffect(() => {
     async function fetchDetailCar() {

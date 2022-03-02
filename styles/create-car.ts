@@ -57,7 +57,7 @@ export const FormBlock = styled(Form)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 
@@ -136,7 +136,7 @@ export const File = styled(Field)`
 `;
 
 export const FileLabel = styled.label`
-  background: #4285f4;
+  background: #171515;
   border-radius: 5px;
   color: #fff;
   font-size: 1em;
@@ -153,9 +153,9 @@ export const FileLabel = styled.label`
 `;
 
 export const Button = styled.button`
-  padding: 18px;
+  padding: 15px;
   color: white;
-  background-color: #4285f4;
+  background-color: #171515;
   border: none;
   outline: none;
   border-radius: 5px;

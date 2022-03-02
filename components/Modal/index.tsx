@@ -49,7 +49,7 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
     return () => {
       document.body.removeEventListener("click", handleOutsideClick);
     };
-  }, [handleOutsideClick]);
+  }, []);
 
   return (
     <Wrapper ref={modalRef}>

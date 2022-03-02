@@ -51,7 +51,7 @@ const CreateCar: NextPage = () => {
         <title>Create page</title>
       </Head>
 
-      <Container imgUrl="/img/image-2.png">
+      <Container imgUrl="/polar-2.jpeg">
         <Formik
           validationSchema={validationSchemaCreate}
           innerRef={formikRef}
@@ -195,7 +195,7 @@ const CreateCar: NextPage = () => {
                     disabled={!isValid}
                     type="submit"
                   >
-                    Create car
+                    Create
                   </Button>
                 </section>
               </FormBlock>
