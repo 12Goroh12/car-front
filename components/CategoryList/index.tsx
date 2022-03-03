@@ -6,12 +6,25 @@ import { Item } from "../Сategories/style";
 interface ICategoryListProps {
   item: ICategories;
   className?: string;
+  setIsVisible: (value: boolean | ((prev: boolean) => boolean)) => void;
 }
 
-const CategoryList: FC<ICategoryListProps> = ({ item, className }) => (
-  <Link href={item.path} passHref>
-    <Item className={className}>{item.name}</Item>
-  </Link>
-);
+const CategoryList: FC<ICategoryListProps> = ({
+  item,
+  className,
+  setIsVisible,
+}) => {
+  const notVisible = () => {
+    setIsVisible(false);
+  };
+
+  return (
+    <Link href={item.path} passHref>
+      <Item onClick={notVisible} className={className}>
+        {item.name}
+      </Item>
+    </Link>
+  );
+};
 
 export default CategoryList;

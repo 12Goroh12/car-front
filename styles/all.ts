@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ imgUrl?: string }>`
+export const Container = styled.div<{ car: number; imgUrl: string }>`
   padding: 6rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: ${(props) => props.car === 0 && 0};
+  left: ${(props) => props.car === 0 && 0};
+  right: ${(props) => props.car === 0 && 0};
+  bottom: ${(props) => props.car === 0 && 0};
   width: 100%;
   background: url(${(props) => props.imgUrl}) center center/cover no-repeat;
 `;

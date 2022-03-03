@@ -19,7 +19,7 @@ const CarsComponent: FC<ICarsComponentProps> = observer(({ cars }) => {
 
   useEffect(() => {
     carStore.getCarsInStore();
-  }, []);
+  }, [pathname]);
 
   const sortMileage = () => {
     setSorting(!sorting);
@@ -42,7 +42,7 @@ const CarsComponent: FC<ICarsComponentProps> = observer(({ cars }) => {
   };
 
   return (
-    <Container imgUrl="/tesla-page.jpg">
+    <Container car={cars.length} imgUrl='/tesla-page.jpg'>
       <Wrapper>
         <SortWrap>
           <div>

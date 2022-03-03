@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   position: fixed;
+  opacity: 1;
+  z-index: 100;
   padding: 5px 20px;
   display: flex;
   justify-content: space-between;

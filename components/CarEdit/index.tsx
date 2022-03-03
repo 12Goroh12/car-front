@@ -41,6 +41,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
       setSubmitting(false);
       resetForm();
       setEditForm(false);
+      carStore.getCarsInStore();
       router.push(WebsiteUrls.NEW_ADN_USED);
     } catch (error) {
       console.log(error);
