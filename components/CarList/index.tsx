@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
-import { Image } from "cloudinary-react";
+import Image from "next/image";
 import { ICar } from "../../types/cars";
 import { BaseUrl, KeyCloudinary } from "../../types/enums";
 import {
@@ -28,24 +28,24 @@ const CarList: FC<ICarList> = ({ car }) => {
   return (
     <List>
       <Image
-        cloudName={KeyCloudinary.KEY}
-        publicId={`${BaseUrl.CLOUDINARY_IMAGE}/${car.file[0]}`}
-        width={350}
-        height={300}
+        src={`${BaseUrl.CLOUDINARY_IMAGE}/${car.file[0]}`}
         alt={car.name}
+    
+        width={600}
+        height={550}
       />
       <Column>
         <Name>{car.name}</Name>
         <Price>Price: {car.price} $</Price>
         <Reserve>
-          <img src="/power.png" alt="speed" width={20} height={30} />
+          <Image src="/power.png" alt="speed" width={20} height={30} />
           <ReserveBlock>
             <p>{car.reserve}km</p>
             <span>power reserve</span>
           </ReserveBlock>
         </Reserve>
         <Speed>
-          <img src="/speed.png" alt="speed" width={30} height={20} />
+          <Image src="/speed.png" alt="speed" width={30} height={20} />
           <SpeedBlock>
             <p> {car.speed}</p>
             <span>0-100 кm/h</span>
