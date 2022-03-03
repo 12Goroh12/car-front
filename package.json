@@ -1,7 +1,7 @@
 {
   "name": "tesla-next-js",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://tesla-store.herokuapp.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
