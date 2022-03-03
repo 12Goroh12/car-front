@@ -42,7 +42,7 @@ const CarsComponent: FC<ICarsComponentProps> = observer(({ cars }) => {
   };
 
   return (
-    <Container imgUrl="/tesla-page.jpg">
+    <Container car={cars.length} imgUrl='/tesla-page.jpg'>
       <Wrapper>
         <SortWrap>
           <div>
