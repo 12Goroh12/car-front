@@ -51,7 +51,7 @@ const CreateCar: NextPage = () => {
         <title>Create page</title>
       </Head>
 
-      <Container imgUrl="/polar-2.jpeg">
+      <Container imgUrl="/images/solar-panel.jpg">
         <Formik
           validationSchema={validationSchemaCreate}
           innerRef={formikRef}

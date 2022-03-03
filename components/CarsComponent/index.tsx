@@ -19,7 +19,7 @@ const CarsComponent: FC<ICarsComponentProps> = observer(({ cars }) => {
 
   useEffect(() => {
     carStore.getCarsInStore();
-  }, []);
+  }, [pathname]);
 
   const sortMileage = () => {
     setSorting(!sorting);
