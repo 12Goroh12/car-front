@@ -12,11 +12,12 @@ export const List = styled.div`
     border-top-left-radius: 10px;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 450px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    width: 100%;
     padding-right: 0rem;
 
     img {
@@ -24,7 +25,7 @@ export const List = styled.div`
       border-top-right-radius: 10px;
       border-bottom-left-radius: 0;
       width: 100%;
-      height: 300px;
+      height: 100%;
     }
   }
 

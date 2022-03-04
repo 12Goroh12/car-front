@@ -30,9 +30,9 @@ const CarList: FC<ICarList> = ({ car }) => {
       <Image
         src={`${BaseUrl.CLOUDINARY_IMAGE}/${car.file[0]}`}
         alt={car.name}
-    
-        width={600}
-        height={550}
+        width={500}
+        height={450}
+        layout="intrinsic"
       />
       <Column>
         <Name>{car.name}</Name>

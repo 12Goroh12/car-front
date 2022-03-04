@@ -80,12 +80,22 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
       }
     }
     fetchDetailCar();
-  }, [carId]);
+  }, []);
 
   return (
     <Wrapper ref={editRef}>
       <Formik
-        initialValues={carStore.car}
+        initialValues={{
+          name: car?.name || "",
+          price: car?.price || null,
+          description: car?.description || "",
+          speed: car?.speed || null,
+          reserve: car?.reserve || null,
+          used: car?.used || false,
+          file: car?.file || [],
+          _id: car?._id || "",
+        }}
+        enableReinitialize
         validationSchema={validationSchemaCreate}
         validateOnBlur
         onSubmit={submit}
@@ -100,7 +110,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
               <section>
                 <Label htmlFor="name">Name</Label>
                 <Input
-                  value={values.name || car?.name}
+                  value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   name="name"
@@ -115,7 +125,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                 <section>
                   <Label htmlFor="price">Price</Label>
                   <Input
-                    value={values.price || car?.price}
+                    value={values.price}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     name="price"
@@ -129,7 +139,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                 <section>
                   <Label htmlFor="speed">Speed</Label>
                   <Input
-                    value={values.speed || car?.speed}
+                    value={values.speed}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     name="speed"
@@ -143,7 +153,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                 <section>
                   <Label htmlFor="reserve">Reserve</Label>
                   <Input
-                    value={values.reserve || car?.reserve}
+                    value={values.reserve}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     name="reserve"
@@ -158,7 +168,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
               <section>
                 <Label htmlFor="description">Description</Label>
                 <Input
-                  value={values.description || car?.description}
+                  value={values.description}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   name="description"
@@ -187,7 +197,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                 <section>
                   <Label htmlFor="mileage">Mileage</Label>
                   <Input
-                    value={values.mileage || car?.mileage}
+                    value={values.mileage}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     name="mileage"
