@@ -10,7 +10,7 @@ export enum WebsiteUrls {
 }
 
 export enum BaseUrl {
-  URL = "https://tesla-store.herokuapp.com/",
+  URL = "https://store-tesla-back.herokuapp.com/",
   CLOUDINARY = "https://api.cloudinary.com/v1_1/bsslmves/image/upload",
   CLOUDINARY_IMAGE = "https://res.cloudinary.com/bsslmves/image/upload/v1645618878",
 }
