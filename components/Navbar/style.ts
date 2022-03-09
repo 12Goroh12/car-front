@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ show: boolean }>`
   width: 100%;
   position: fixed;
   opacity: 1;
   z-index: 100;
   padding: 5px 20px;
+  background-color: ${(props) => (props.show ? "#fff" : "")};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.5s ease-in-out;
 `;
 export const Logo = styled.div`
   position: relative;

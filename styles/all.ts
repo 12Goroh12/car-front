@@ -1,25 +1,18 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ car: number; imgUrl: string }>`
-  padding: 6rem 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: ${(props) => props.car === 0 && 0};
-  left: ${(props) => props.car === 0 && 0};
-  right: ${(props) => props.car === 0 && 0};
-  bottom: ${(props) => props.car === 0 && 0};
+export const Container = styled.div`
+  padding: 6rem 0.5rem;
   width: 100%;
-  background: url(${(props) => props.imgUrl}) center center/cover no-repeat;
+  height: 100vh;
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  height: 100%;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 1rem;
+  margin-bottom: 0rem;
 `;
 
 export const SortWrap = styled.div`

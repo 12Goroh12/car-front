@@ -27,10 +27,10 @@ export const MediaMenu = styled.div`
     z-index: 1;
     top: 100px;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 1);
 
     a {
-      color: white;
+      color: black;
     }
   }
 `;

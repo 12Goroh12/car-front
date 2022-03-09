@@ -5,14 +5,15 @@ export const Modal = styled.div`
   width: 100%;
   padding: 8px;
   position: absolute;
-  top: 60px;
+  top: 80px;
   right: 142px;
   background-color: white;
   border-radius: 10px;
+  box-shadow: 0px 0px 14px -4px rgb(0 0 0 / 50%);
 
   @media (max-width: 700px) {
     position: fixed;
-    top: 65px;
+    top: 85px;
     width: 200px;
     right: 86px;
   }

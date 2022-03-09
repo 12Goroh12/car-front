@@ -1,55 +1,20 @@
 import styled from "styled-components";
 
 export const List = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding-right: 1rem;
-  border-radius: 10px;
-
-  img {
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-
-  @media (max-width: 450px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    padding-right: 0rem;
-
-    img {
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      border-bottom-left-radius: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  @media (max-width: 400px) {
-    img {
-      width: 100%;
-      height: 200px;
-    }
-  }
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 110px 75px;
+  grid-auto-rows: minmax(100%, auto);
+  grid-gap: 1rem;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 0px 7px -4px #000;
 `;
 
 export const Column = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-right: 2rem;
-  padding-left: 1rem;
-
-  @media (max-width: 1000px) {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 `;
 
 export const Name = styled.h1`
@@ -84,8 +49,10 @@ export const Speed = styled.div`
   }
 `;
 export const SpeedBlock = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
 
   p {
     font-size: 10px;
@@ -129,7 +96,7 @@ export const TestDrive = styled.button`
   padding: 10px;
   background-color: #171515;
   color: white;
-  width: 70px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,14 +105,15 @@ export const TestDrive = styled.button`
   border-radius: 8px;
   cursor: pointer;
   font-size: 10px;
+  margin: 1rem;
 
   @media (max-width: 650px) {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
-
-    width: 70px;
+    margin: 8px;
+    width: 100%;
   }
 `;
 
@@ -153,5 +121,4 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 `;
