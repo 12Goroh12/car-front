@@ -12,6 +12,7 @@ export const Container = styled.div<{ show?: boolean }>`
   align-items: center;
   transition: all 0.5s ease-in-out;
 `;
+
 export const Logo = styled.div`
   position: relative;
   left: -11px;

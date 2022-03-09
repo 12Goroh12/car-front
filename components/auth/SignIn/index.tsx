@@ -6,7 +6,11 @@ import { WebsiteUrls } from "../../../types/enums";
 import { FC } from "react";
 import { useRouter } from "next/router";
 
-const SignIn: FC = () => {
+interface SignInProps {
+  showNavbar: boolean;
+}
+
+const SignIn: FC<SignInProps> = ({ showNavbar }) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -14,7 +18,7 @@ const SignIn: FC = () => {
   };
 
   return (
-    <Container>
+    <Container show={showNavbar}>
       <Logo>
         <Link href={WebsiteUrls.HOME}>
           <a>

@@ -9,17 +9,17 @@ import { FiSettings } from "react-icons/fi";
 import { Button, Container, Logo, Menu, Settings } from "../../Navbar/style";
 import { Roles, WebsiteUrls } from "../../../types/enums";
 import { signOut } from "next-auth/react";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { IUser } from "../../../types/user";
 import { NextRouter, useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
 
 interface ISignOutProps {
   admin?: IUser;
+  showNavbar: boolean;
 }
 
-const SignOut: FC<ISignOutProps> = ({ admin }) => {
-  const [showNavbar, setNavbarShow] = useState(false);
+const SignOut: FC<ISignOutProps> = ({ admin, showNavbar }) => {
   const router: NextRouter = useRouter();
   const user = admin?.roles[0] === Roles.USER;
   const isAdmin = admin?.roles[0] !== Roles.ADMIN;
@@ -33,20 +33,6 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
   const popupHandler = () => {
     carStore.togglePopup();
   };
-
-  useEffect(() => {
-    const win: Window = window;
-
-    const onScroll: EventListener = () => {
-      win.scrollY > 20 ? setNavbarShow(true) : setNavbarShow(false);
-    };
-
-    win.addEventListener("scroll", onScroll);
-
-    return () => {
-      win.removeEventListener("scroll", onScroll);
-    };
-  }, []);
 
   return (
     <Container show={showNavbar}>
