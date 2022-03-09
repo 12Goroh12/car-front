@@ -42,7 +42,7 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
       setSubmitting(false);
       resetForm();
       setEditForm(false);
-      router.push(WebsiteUrls.NEW_ADN_USED);
+      router.push(WebsiteUrls.NEW_AND_USED);
     } catch (error) {
       console.log(error);
     }

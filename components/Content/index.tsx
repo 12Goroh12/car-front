@@ -35,7 +35,7 @@ const Content: FC<IContentProps> = ({ image, title, description }) => {
       </ItemText>
       <ButtonGroup>
         {user || userSocial ? (
-          <Link href={WebsiteUrls.NEW_ADN_USED} passHref>
+          <Link href={WebsiteUrls.NEW_AND_USED} passHref>
             <Button>Store</Button>
           </Link>
         ) : (

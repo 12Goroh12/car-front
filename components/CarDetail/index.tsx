@@ -25,6 +25,7 @@ const CarDetail: FC<ICarDetailProps> = observer(({ carId }) => {
   const router: NextRouter = useRouter();
   let user;
   const { back }: NextRouter = useRouter();
+  const [remove, setRemove] = useState(false);
   const [modal, setModal] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [carDetail, setCarDetail] = useState<ICar>();
@@ -60,10 +61,8 @@ const CarDetail: FC<ICarDetailProps> = observer(({ carId }) => {
   };
 
   const removeCar = async () => {
-    carStore.deleteCar(carId);
-    setTimeout(() => {
-      router.push(WebsiteUrls.NEW_ADN_USED);
-    }, 1000);
+    await carStore.deleteCar(carId);
+    router.push(WebsiteUrls.NEW_AND_USED);
   };
 
   return (
