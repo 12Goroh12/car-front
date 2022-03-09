@@ -26,6 +26,18 @@ class Cars {
     this.isLoading = payload;
   }
 
+  async deleteCar(carId: string) {
+    try {
+      const response = await axios.delete(
+        `${BaseUrl.URL}cars/delete/${carId}`,
+        { data: { id: carId } }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getCarsInStore() {
     try {
       this.setLoading(true);
