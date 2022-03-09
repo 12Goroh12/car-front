@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ show: boolean }>`
+export const Container = styled.div<{ show?: boolean }>`
   width: 100%;
   position: fixed;
   opacity: 1;
