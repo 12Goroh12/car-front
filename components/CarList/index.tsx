@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { FC } from "react";
 import Image from "next/image";
 import { ICar } from "../../types/cars";
-import { BaseUrl, KeyCloudinary } from "../../types/enums";
+import { BaseUrl } from "../../types/enums";
 import {
   ButtonGroup,
   Column,
@@ -30,9 +30,9 @@ const CarList: FC<ICarList> = ({ car }) => {
       <Image
         src={`${BaseUrl.CLOUDINARY_IMAGE}/${car.file[0]}`}
         alt={car.name}
-        width={500}
-        height={450}
-        layout="intrinsic"
+        width={550}
+        height={500}
+        layout="responsive"
       />
       <Column>
         <Name>{car.name}</Name>

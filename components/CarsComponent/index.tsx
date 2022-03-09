@@ -42,23 +42,25 @@ const CarsComponent: FC<ICarsComponentProps> = observer(({ cars }) => {
   };
 
   return (
-    <Container car={cars.length} imgUrl='/tesla-page.jpg'>
-      <Wrapper>
-        <SortWrap>
-          <div>
-            <MdSort size={40} />
-          </div>
-          <SortButton onClick={sortPrice}>Price</SortButton>
-          {pathname === WebsiteUrls.USED && (
-            <SortButton onClick={sortMileage}>Mileage</SortButton>
-          )}
-        </SortWrap>
-        {cars.length !== 0 ? (
-          cars.map((car: ICar) => <CarList key={car._id} car={car} />)
-        ) : (
-          <Loading />
+    <Container>
+      <SortWrap>
+        <div>
+          <MdSort size={40} />
+        </div>
+        <SortButton onClick={sortPrice}>Price</SortButton>
+        {pathname === WebsiteUrls.USED && (
+          <SortButton onClick={sortMileage}>Mileage</SortButton>
         )}
-      </Wrapper>
+      </SortWrap>
+      {cars.length !== 0 ? (
+        <Wrapper>
+          {cars.map((car: ICar) => (
+            <CarList key={car._id} car={car} />
+          ))}
+        </Wrapper>
+      ) : (
+        <Loading />
+      )}
     </Container>
   );
 });

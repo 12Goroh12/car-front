@@ -16,9 +16,10 @@ import { observer } from "mobx-react-lite";
 
 interface ISignOutProps {
   admin?: IUser;
+  showNavbar: boolean;
 }
 
-const SignOut: FC<ISignOutProps> = ({ admin }) => {
+const SignOut: FC<ISignOutProps> = ({ admin, showNavbar }) => {
   const router: NextRouter = useRouter();
   const user = admin?.roles[0] === Roles.USER;
   const isAdmin = admin?.roles[0] !== Roles.ADMIN;
@@ -34,7 +35,7 @@ const SignOut: FC<ISignOutProps> = ({ admin }) => {
   };
 
   return (
-    <Container>
+    <Container show={showNavbar}>
       <Logo>
         <Link href={WebsiteUrls.HOME}>
           <a>

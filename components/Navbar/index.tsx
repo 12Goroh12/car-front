@@ -4,6 +4,7 @@ import SignOut from "../auth/SignOut";
 
 const Navrabr: FC = () => {
   const [hasMounted, setHasMounted] = useState(false);
+  const [showNavbar, setNavbarShow] = useState(false);
   let user;
   let userSocial;
   if (typeof window !== "undefined") {
@@ -13,13 +14,28 @@ const Navrabr: FC = () => {
 
   useEffect(() => {
     setHasMounted(true);
+    const win: Window = window;
+
+    const onScroll: EventListener = () => {
+      win.scrollY > 20 ? setNavbarShow(true) : setNavbarShow(false);
+    };
+
+    win.addEventListener("scroll", onScroll);
+
+    return () => {
+      win.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   if (!hasMounted) {
     return null;
   }
 
-  return user || userSocial ? <SignOut admin={user} /> : <SignIn />;
+  return user || userSocial ? (
+    <SignOut showNavbar={showNavbar} admin={user} />
+  ) : (
+    <SignIn showNavbar={showNavbar} />
+  );
 };
 
 export default Navrabr;
