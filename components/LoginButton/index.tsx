@@ -1,4 +1,4 @@
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { NextRouter, useRouter } from "next/router";
 import { FC } from "react";
 import { WebsiteUrls } from "../../types/enums";
@@ -12,11 +12,9 @@ interface ButtonProps {
 
 const LoginButton: FC<ButtonProps> = ({ provider, color }) => {
   const router: NextRouter = useRouter();
-  const { data: session } = useSession();
 
   const handleClick = () => {
     signIn(provider.id);
-    localStorage.setItem("social", JSON.stringify(session?.user));
     router.push(WebsiteUrls.HOME);
   };
 

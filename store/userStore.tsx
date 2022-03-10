@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { signOut } from "next-auth/react";
 import { IUser } from "../types/user";
 
 class User {
@@ -21,6 +22,7 @@ class User {
   }
 
   removeUser() {
+    signOut()
     localStorage.removeItem("user");
     localStorage.removeItem("social");
   }
