@@ -16,6 +16,7 @@ import {
 import { Values } from "../../types/formik";
 import { WebsiteUrls } from "../../types/enums";
 import { initialValuesLogin, validationSchemaLogin } from "../../utils";
+import { signIn } from "next-auth/react";
 
 interface ILoginComponentProps {
   heading: string;
@@ -102,7 +103,11 @@ const LoginComponent: FC<ILoginComponentProps> = ({
               />
               {exist && <Error>{error}</Error>}
               {touched.email && errors.email && <Error>{errors.email}</Error>}
-              <Button onClick={() => handleSubmit()} disabled={!isValid} type="submit">
+              <Button
+                onClick={() => handleSubmit()}
+                disabled={!isValid}
+                type="submit"
+              >
                 Submit
               </Button>
             </FormBlock>
@@ -111,7 +116,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
         <Header>
           <Heading>{heading}</Heading>
           <Link href={href}>
-            <Links>{link}</Links>
+            <Links onClick={() => signIn()}>{link}</Links>
           </Link>
           <Link href={accountBack}>
             <Account>{account}</Account>

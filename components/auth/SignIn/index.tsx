@@ -4,15 +4,17 @@ import logo from "../../../public/tesla.svg";
 import { Button, ButtonGroup, Container, Logo } from "../../Navbar/style";
 import { WebsiteUrls } from "../../../types/enums";
 import { FC } from "react";
-import { signIn } from "next-auth/react";
+import { NextRouter, useRouter } from "next/router";
 
 interface SignInProps {
   showNavbar: boolean;
 }
 
 const SignIn: FC<SignInProps> = ({ showNavbar }) => {
+  const router: NextRouter = useRouter()
+  
   const handleClick = () => {
-    signIn();
+    router.push(WebsiteUrls.REGISTRATION)
   };
 
   return (
