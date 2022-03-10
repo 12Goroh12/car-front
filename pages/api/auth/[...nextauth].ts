@@ -12,8 +12,8 @@ export default NextAuth({
     }),
     GoogleProvider({
       clientId:
-        "657855454902-k6m2g3lohuvpqti1lilpu1ch9t2a3krk.apps.googleusercontent.com",
-      clientSecret: "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",
+        "779723575957-4dhurqakmv8a45o1k3fu12nbig4n9c0b.apps.googleusercontent.com",
+      clientSecret: "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",
     }),
     FaceBookProvider({
       clientId: "650608712847274",
