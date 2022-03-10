@@ -20,8 +20,8 @@ export default NextAuth({
       clientSecret: "bf7224882c006804b5031f3fd48ba23d",
     }),
   ],
-  // pages: {
-  //   signIn: WebsiteUrls.SOCIAL,
-  // },
+  pages: {
+    signIn: WebsiteUrls.SOCIAL,
+  },
   secret: "01bb6e9512ef1aef5ddbb96f95e385d5",
 });
