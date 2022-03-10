@@ -1,23 +1,21 @@
 import LoginButton from "../components/LoginButton";
 import { GetServerSideProps, NextPage } from "next";
 import { Form, Title, Wrapper } from "../styles/social";
-import { getProviders, getSession, useSession } from "next-auth/react";
+import { getProviders, useSession } from "next-auth/react";
 import { IProviders } from "../types/provider";
 import Head from "next/head";
 import { NextRouter, useRouter } from "next/router";
 import { WebsiteUrls } from "../types/enums";
-import { ISession } from "../types/session";
 
 interface ISocialProps {
   providers: IProviders;
-  sessions: ISession;
 }
 
-const Social: NextPage<ISocialProps> = ({ providers, sessions }) => {
+const Social: NextPage<ISocialProps> = ({ providers }) => {
   const router: NextRouter = useRouter();
   const { data: session } = useSession();
 
-  if (sessions) {
+  if (session) {
     localStorage.setItem("social", JSON.stringify(session?.user));
     router.push(WebsiteUrls.HOME);
   }
@@ -41,11 +39,10 @@ const Social: NextPage<ISocialProps> = ({ providers, sessions }) => {
 
 export default Social;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const providers = await getProviders();
-  const sessions = await getSession(context);
 
   return {
-    props: { providers, sessions },
+    props: { providers },
   };
 };

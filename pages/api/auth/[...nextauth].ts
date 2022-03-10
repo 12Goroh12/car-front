@@ -22,6 +22,7 @@ export default NextAuth({
   ],
   pages: {
     signIn: WebsiteUrls.SOCIAL,
+    signOut: WebsiteUrls.HOME,
   },
   secret: "01bb6e9512ef1aef5ddbb96f95e385d5",
 });
