@@ -5,7 +5,7 @@ export enum WebsiteUrls {
   LOGIN = "/login",
   USED = "/used",
   NEW = "/new",
-  NEW_ADN_USED = "/all",
+  NEW_AND_USED = "/all",
   CREATE_CAR = "/create-car",
 }
 

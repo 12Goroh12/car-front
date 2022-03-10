@@ -4,6 +4,7 @@ export const Container = styled.div`
   padding: 6rem 0.5rem;
   width: 100%;
   height: 100vh;
+  background-color: #f4f4f4;
 `;
 
 export const Wrapper = styled.div`

@@ -10,18 +10,22 @@ import {
   SpeedBlock,
 } from "./style";
 import { ICar } from "../../types/cars";
-import { BaseUrl, Roles } from "../../types/enums";
+import { BaseUrl, Roles, WebsiteUrls } from "../../types/enums";
 import Image from "next/image";
 import Modal from "../Modal";
 import CarEdit from "../CarEdit";
+import carStore from "../../store/carStore";
+import { observer } from "mobx-react-lite";
 
 interface ICarDetailProps {
   carId: string;
 }
 
-const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
+const CarDetail: FC<ICarDetailProps> = observer(({ carId }) => {
+  const router: NextRouter = useRouter();
   let user;
   const { back }: NextRouter = useRouter();
+  const [remove, setRemove] = useState(false);
   const [modal, setModal] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [carDetail, setCarDetail] = useState<ICar>();
@@ -56,6 +60,11 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
     setEditForm(!editForm);
   };
 
+  const removeCar = async () => {
+    await carStore.deleteCar(carId);
+    router.push(WebsiteUrls.NEW_AND_USED);
+  };
+
   return (
     <Container imgUrl={`${BaseUrl.CLOUDINARY_IMAGE}/${carDetail?.file[0]}`}>
       <Heading>
@@ -87,13 +96,16 @@ const CarDetail: FC<ICarDetailProps> = ({ carId }) => {
       {modal && <Modal setModal={setModal} />}
       <ButtonGroup>
         {user?.roles[0] === Roles.ADMIN && (
-          <Button onClick={showEdit}>Edit</Button>
+          <>
+            <Button onClick={removeCar}>Delete Car</Button>
+            <Button onClick={showEdit}>Edit</Button>
+          </>
         )}
         <Button onClick={showModal}>Test Drive</Button>
         <Button onClick={back}>Back</Button>
       </ButtonGroup>
     </Container>
   );
-};
+});
 
 export default CarDetail;

@@ -9,6 +9,7 @@ export const List = styled.div`
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0px 0px 7px -4px #000;
+  background-color: #fff;
 `;
 
 export const Column = styled.div`

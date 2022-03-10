@@ -15,7 +15,7 @@ const MenuItem: FC = () => {
   };
 
   const goToCarList = () => {
-    router.push(WebsiteUrls.NEW_ADN_USED);
+    router.push(WebsiteUrls.NEW_AND_USED);
     carStore.hidePopup();
   };
 
