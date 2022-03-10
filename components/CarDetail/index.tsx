@@ -25,7 +25,6 @@ const CarDetail: FC<ICarDetailProps> = observer(({ carId }) => {
   const router: NextRouter = useRouter();
   let user;
   const { back }: NextRouter = useRouter();
-  const [remove, setRemove] = useState(false);
   const [modal, setModal] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [carDetail, setCarDetail] = useState<ICar>();

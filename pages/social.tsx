@@ -1,10 +1,8 @@
 import LoginButton from "../components/LoginButton";
 import { GetServerSideProps, NextPage } from "next";
 import { Form, Title, Wrapper } from "../styles/social";
-import { getProviders, useSession } from "next-auth/react";
+import { getProviders } from "next-auth/react";
 import { IProviders } from "../types/provider";
-import { NextRouter, useRouter } from "next/router";
-import { WebsiteUrls } from "../types/enums";
 import Head from "next/head";
 
 interface ISocialProps {
@@ -12,16 +10,6 @@ interface ISocialProps {
 }
 
 const Social: NextPage<ISocialProps> = ({ providers }) => {
-  const { data: session } = useSession();
-  const router: NextRouter = useRouter();
-
-  if (session) {
-    localStorage.setItem("social", JSON.stringify(session?.user));
-    setTimeout(() => {
-      router.push(WebsiteUrls.HOME);
-    }, 1000);
-  }
-
   return (
     <Wrapper imgUrl="/images/connected.jpg">
       <Head>
