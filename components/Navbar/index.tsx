@@ -39,7 +39,7 @@ const Navrabr: FC = () => {
   }
 
   if (pathname === WebsiteUrls.CREATE_CAR) {
-    if (isUser || !user || !userSocial) {
+    if (isUser || !user || userSocial) {
       return <Redirect to={WebsiteUrls.HOME} />;
     }
   }
