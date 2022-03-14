@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../../public/tesla.svg";
 import { Button, ButtonGroup, Container, Logo } from "../../Navbar/style";
 import { WebsiteUrls } from "../../../types/enums";
 import { FC } from "react";
@@ -11,10 +10,10 @@ interface SignInProps {
 }
 
 const SignIn: FC<SignInProps> = ({ showNavbar }) => {
-  const router: NextRouter = useRouter()
-  
+  const router: NextRouter = useRouter();
+
   const handleClick = () => {
-    router.push(WebsiteUrls.REGISTRATION)
+    router.push(WebsiteUrls.REGISTRATION);
   };
 
   return (
@@ -22,7 +21,7 @@ const SignIn: FC<SignInProps> = ({ showNavbar }) => {
       <Logo>
         <Link href={WebsiteUrls.HOME}>
           <a>
-            <Image src={logo} alt="logo" width={130} height={50} />
+            <Image src="/public/tesla.svg" alt="logo" width={130} height={50} />
           </a>
         </Link>
       </Logo>
