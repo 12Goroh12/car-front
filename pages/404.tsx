@@ -11,7 +11,7 @@ const Error: NextPage = () => {
   useEffect(() => {
     setTimeout(() => {
       router.push(WebsiteUrls.HOME);
-    }, 4000);
+    }, 2000);
   }, [router]);
 
   return (
