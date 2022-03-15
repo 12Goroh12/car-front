@@ -78,7 +78,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
                 placeholder="John"
                 type="text"
               />
-              {touched.name && errors.name && <Error>{errors.name}</Error>}
+              {touched.name && errors.name && <Error data-testid="nameError">{errors.name}</Error>}
               <label htmlFor="password">Password</label>
               <Input
                 value={values.password}
@@ -98,7 +98,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
                 onBlur={handleBlur}
                 id="email"
                 name="email"
-                placeholder="john@acme.com"
+                placeholder="email@acme.com"
                 type="email"
               />
               {exist && <Error>{error}</Error>}

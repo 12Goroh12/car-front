@@ -7,7 +7,7 @@ import CategoryList from "../CategoryList";
 
 const Сategories: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { pathname }: NextRouter = useRouter();
+  const router: NextRouter = useRouter();
   const categoriesRef = useRef<HTMLDivElement>(null);
 
   const visibleMenu = () => {
@@ -55,7 +55,7 @@ const Сategories: FC = () => {
           <CategoryList
             setIsVisible={setIsVisible}
             key={item.id}
-            className={pathname === item.path ? "2px solid #df0000" : ""}
+            className={router.pathname === item.path ? "2px solid #df0000" : ""}
             item={item}
           />
         ))}
