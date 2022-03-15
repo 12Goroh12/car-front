@@ -29,6 +29,7 @@ interface ICarEditProps {
 
 const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
   const [car, setCar] = useState<ICar>();
+  const [error, setError] = useState<any>();
   const router: NextRouter = useRouter();
   const editRef = useRef<HTMLDivElement>(null);
 
@@ -64,23 +65,19 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
 
   useEffect(() => {
     document.body.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.body.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
-
-  useEffect(() => {
-    async function fetchDetailCar() {
+    (async function fetchDetailCar() {
       try {
         const { data } = await axios.get(`${BaseUrl.URL}cars/details/${carId}`);
         setCar(data);
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
-    }
-    fetchDetailCar();
-  }, []);
+    })();
+
+    return () => {
+      document.body.removeEventListener("click", handleOutsideClick);
+    };
+  }, [handleOutsideClick, carId]);
 
   return (
     <Wrapper ref={editRef}>
@@ -106,7 +103,13 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
               <RiCloseCircleFill size={30} />
             </Close>
             <FormBlock>
-              <Text>To change the data</Text>
+              <Text>
+                {error ? (
+                  <span>something went wrong</span>
+                ) : (
+                  "To change the data"
+                )}
+              </Text>
               <section>
                 <Label htmlFor="name">Name</Label>
                 <Input
