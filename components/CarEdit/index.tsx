@@ -118,7 +118,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                   type="text"
                 />
                 <ErrorMessage name="name">
-                  {(msg: string) => <Error>{msg}</Error>}
+                  {(msg: string) => (
+                    <Error data-testid="nameError">{msg}</Error>
+                  )}
                 </ErrorMessage>
               </section>
               <RowBlock>
@@ -133,7 +135,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                     type="number"
                   />
                   <ErrorMessage name="price">
-                    {(msg: string) => <Error>{msg}</Error>}
+                    {(msg: string) => (
+                      <Error data-testid="priceError">{msg}</Error>
+                    )}
                   </ErrorMessage>
                 </section>
                 <section>
@@ -147,7 +151,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                     type="number"
                   />
                   <ErrorMessage name="speed">
-                    {(msg: string) => <Error>{msg}</Error>}
+                    {(msg: string) => (
+                      <Error data-testid="speedError">{msg}</Error>
+                    )}
                   </ErrorMessage>
                 </section>
                 <section>
@@ -161,7 +167,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                     type="number"
                   />
                   <ErrorMessage name="reserve">
-                    {(msg: string) => <Error>{msg}</Error>}
+                    {(msg: string) => (
+                      <Error data-testid="reserveError">{msg}</Error>
+                    )}
                   </ErrorMessage>
                 </section>
               </RowBlock>
@@ -175,7 +183,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                   type="text"
                 />
                 <ErrorMessage name="description">
-                  {(msg: string) => <Error>{msg}</Error>}
+                  {(msg: string) => (
+                    <Error data-testid="descriptionError">{msg}</Error>
+                  )}
                 </ErrorMessage>
               </section>
               <CeckboxSection>
@@ -205,7 +215,9 @@ const CarEdit: FC<ICarEditProps> = ({ carId, setEditForm }) => {
                     type="number"
                   />
                   <ErrorMessage name="mileage">
-                    {(msg: string) => <Error>{msg}</Error>}
+                    {(msg: string) => (
+                      <Error data-testid="mileageError">{msg}</Error>
+                    )}
                   </ErrorMessage>
                 </section>
               )}
