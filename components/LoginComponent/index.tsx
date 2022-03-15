@@ -78,7 +78,9 @@ const LoginComponent: FC<ILoginComponentProps> = ({
                 placeholder="John"
                 type="text"
               />
-              {touched.name && errors.name && <Error data-testid="nameError">{errors.name}</Error>}
+              {touched.name && errors.name && (
+                <Error data-testid="nameError">{errors.name}</Error>
+              )}
               <label htmlFor="password">Password</label>
               <Input
                 value={values.password}
@@ -89,7 +91,7 @@ const LoginComponent: FC<ILoginComponentProps> = ({
                 type="password"
               />
               {touched.password && errors.password && (
-                <Error>{errors.password}</Error>
+                <Error data-testid="errorPass">{errors.password}</Error>
               )}
               <label htmlFor="email">Email</label>
               <Input
@@ -102,7 +104,9 @@ const LoginComponent: FC<ILoginComponentProps> = ({
                 type="email"
               />
               {exist && <Error>{error}</Error>}
-              {touched.email && errors.email && <Error>{errors.email}</Error>}
+              {touched.email && errors.email && (
+                <Error data-testid="error">{errors.email}</Error>
+              )}
               <Button
                 onClick={() => handleSubmit()}
                 disabled={!isValid}
@@ -115,12 +119,12 @@ const LoginComponent: FC<ILoginComponentProps> = ({
         </Formik>
         <Header>
           <Heading>{heading}</Heading>
-          <Link href={href}>
-            <Links onClick={() => signIn()}>{link}</Links>
-          </Link>
-          <Link href={accountBack}>
-            <Account>{account}</Account>
-          </Link>
+          <Links onClick={() => signIn()}>
+            <Link href={href}>{link}</Link>
+          </Links>
+          <Account>
+            <Link href={accountBack}>{account}</Link>
+          </Account>
         </Header>
       </Wrapper>
     </Container>

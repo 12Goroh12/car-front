@@ -61,7 +61,7 @@ export const Heading = styled.h1`
   }
 `;
 
-export const Links = styled.a`
+export const Links = styled.button`
   background-color: #4285f4;
   color: white;
   width: 100%;
