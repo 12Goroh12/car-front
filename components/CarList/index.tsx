@@ -38,7 +38,7 @@ const CarList: FC<ICarList> = ({ car }) => {
         <Name>{car.name}</Name>
         <Price>Price: {car.price} $</Price>
         <Reserve>
-          <Image src="/power.png" alt="speed" width={20} height={30} />
+          <Image src="/power.png" alt="power" width={20} height={30} />
           <ReserveBlock>
             <p>{car.reserve}km</p>
             <span>power reserve</span>
