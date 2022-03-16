@@ -85,7 +85,9 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
                 />
               </Block>
               <span>
-                {touched.name && errors.name && <Error>{errors.name}</Error>}
+                {touched.name && errors.name && (
+                  <Error data-testid="nameError">{errors.name}</Error>
+                )}
               </span>
               <Block>
                 <label htmlFor="email">Email:</label>
@@ -99,7 +101,9 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
                 />
               </Block>
               <span>
-                {touched.email && errors.email && <Error>{errors.email}</Error>}
+                {touched.email && errors.email && (
+                  <Error data-testid="emailError">{errors.email}</Error>
+                )}
               </span>
               <Block>
                 <label htmlFor="name">Phone:</label>
@@ -113,9 +117,15 @@ const Modal: FC<IModalProps> = ({ setModal }) => {
                 />
               </Block>
               <span>
-                {touched.phone && errors.phone && <Error>{errors.phone}</Error>}
+                {touched.phone && errors.phone && (
+                  <Error data-testid="phoneError">{errors.phone}</Error>
+                )}
               </span>
-              <Button type="submit" disabled={!isValid} onClick={() => handleSubmit()}>
+              <Button
+                type="submit"
+                disabled={!isValid}
+                onClick={() => handleSubmit()}
+              >
                 Test Drive
               </Button>
             </FormBlock>

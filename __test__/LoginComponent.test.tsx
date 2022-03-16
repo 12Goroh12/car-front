@@ -1,8 +1,8 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import LoginComponent from "../components/LoginComponent";
 import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 import { createMockRouter } from ".";
-import LoginComponent from "../components/LoginComponent";
 import { WebsiteUrls } from "../types/enums";
 
 describe("render the component", () => {
@@ -10,9 +10,6 @@ describe("render the component", () => {
 
   beforeEach(() => {
     submit();
-  });
-
-  it("render heading", () => {
     render(
       <LoginComponent
         heading="Registration"
@@ -24,25 +21,15 @@ describe("render the component", () => {
         account="have an account?"
       />
     );
+  });
 
+  it("render heading", () => {
     expect(
       screen.getByRole("heading", { name: /registration/i })
     ).toBeInTheDocument();
   });
 
   it("field name", () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const inputName = screen.queryByPlaceholderText(/john/i);
 
     expect(inputName).toBeInTheDocument();
@@ -50,18 +37,6 @@ describe("render the component", () => {
   });
 
   it("focus field name", () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const input = screen.getByPlaceholderText("John");
 
     expect(input).not.toHaveFocus();
@@ -70,18 +45,6 @@ describe("render the component", () => {
   });
 
   it("test for the onChange event", () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const input = screen.getByPlaceholderText(/john/i);
 
     userEvent.type(input, "Admin");
@@ -90,18 +53,6 @@ describe("render the component", () => {
   });
 
   it("should show validation on blur field name", async () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const input = screen.getByLabelText(/name/i);
 
     fireEvent.blur(input);
@@ -115,44 +66,20 @@ describe("render the component", () => {
   });
 
   it("field email", () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const email = screen.getByLabelText(/email/i);
 
-    expect(email).toBeInTheDocument();
-    expect(email).not.toBeRequired();
     expect(email).not.toHaveFocus();
     email.focus();
     expect(email).toHaveFocus();
 
     userEvent.type(email, "test@test.com");
 
+    expect(email).toBeInTheDocument();
+    expect(email).not.toBeRequired();
     expect(screen.getByDisplayValue(/test@test.com/i)).toBeInTheDocument();
   });
 
   it("should show validation on blur field email", async () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const email = screen.getByLabelText(/email/i);
 
     fireEvent.blur(email);
@@ -166,18 +93,6 @@ describe("render the component", () => {
   });
 
   it("should show validation on blur field password", async () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const email = screen.getByLabelText(/password/i);
 
     fireEvent.blur(email);
@@ -191,18 +106,6 @@ describe("render the component", () => {
   });
 
   it("field password", () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const password = screen.getByLabelText(/password/i);
 
     expect(password).toBeInTheDocument();
@@ -217,18 +120,6 @@ describe("render the component", () => {
   });
 
   it("button submit", async () => {
-    render(
-      <LoginComponent
-        heading="Registration"
-        link="Log in with account social"
-        href={WebsiteUrls.SOCIAL}
-        exist={false}
-        submitHandler={submit}
-        error="This Email already exists"
-        account="have an account?"
-      />
-    );
-
     const button = screen.getByRole("button", { name: /submit/i });
     const email = screen.getByLabelText(/password/i);
 
@@ -245,8 +136,11 @@ describe("render the component", () => {
       expect(button).toBeDisabled();
     });
   });
+});
 
+describe("render link the social page", () => {
   it("Sign in with Social work", async () => {
+    const submit = jest.fn();
     const router = createMockRouter({
       query: { pathname: WebsiteUrls.REGISTRATION },
     });
@@ -264,7 +158,6 @@ describe("render the component", () => {
         />
       </RouterContext.Provider>
     );
-
     const button = screen.getByText(/Log in with account social/i);
     const haveAnAccount = screen.getByText(/have an account?/i);
 
