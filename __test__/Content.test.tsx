@@ -5,7 +5,7 @@ import { WebsiteUrls } from "../types/enums";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 
 describe("redner the content", () => {
-  it("there should be an heading in the component", () => {
+  beforeEach(() => {
     render(
       <Content
         image="/tesla-page-1.jpg"
@@ -13,31 +13,26 @@ describe("redner the content", () => {
         description="Order Online for Touchless Delivery"
       />
     );
+  });
 
+  it("there should be an heading in the component", () => {
     const heading = screen.getByRole("heading", { name: "Tesla" });
 
     expect(heading).toBeInTheDocument();
   });
 
   it("there should be an description in the component", () => {
-    render(
-      <Content
-        image="/tesla-page-1.jpg"
-        title="Tesla"
-        description="Order Online for Touchless Delivery"
-      />
-    );
-
     const description = screen.getByText(
       /Order Online for Touchless Delivery/i
     );
 
     expect(description).toBeInTheDocument();
   });
+});
 
+describe("render content for router", () => {
   it("there should be an button in the component", async () => {
     const router = createMockRouter({ pathname: WebsiteUrls.LOGIN });
-
     render(
       <RouterContext.Provider value={router}>
         <Content
@@ -47,7 +42,6 @@ describe("redner the content", () => {
         />
       </RouterContext.Provider>
     );
-
     fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
 
     expect(screen.queryByRole("button", { name: /store/i })).toBeNull();

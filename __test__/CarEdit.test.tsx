@@ -21,22 +21,21 @@ const car: ICar = {
 
 describe("render the car edit component", () => {
   const edit = jest.fn();
+
   beforeEach(() => {
+    render(<CarEdit carId="123" setEditForm={edit} />);
     edit();
   });
 
   it("there should be an heading in the component", () => {
-    render(<CarEdit carId="123" setEditForm={edit} />);
     const heading = screen.getByRole("heading", {
-      name: /to change the data/i,
+      name: /something went wrong/i,
     });
 
     expect(heading).toBeInTheDocument();
   });
 
   it("render all field", async () => {
-    render(<CarEdit carId="123" setEditForm={edit} />);
-
     const name = screen.getByLabelText(/name/i);
     const price = screen.getByLabelText(/price/i);
     const speed = screen.getByLabelText(/speed/i);
@@ -120,8 +119,6 @@ describe("render the car edit component", () => {
   });
 
   it("test for the onChange event", () => {
-    render(<CarEdit carId="123" setEditForm={edit} />);
-
     const name = screen.getByLabelText(/name/i);
 
     userEvent.type(name, "tesla");
@@ -133,7 +130,6 @@ describe("render the car edit component", () => {
     mockedAxios.get.mockImplementationOnce(() =>
       Promise.resolve({ data: car })
     );
-    render(<CarEdit carId="123" setEditForm={edit} />);
 
     expect(mockedAxios.get).toHaveBeenCalledTimes(4);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -143,9 +139,8 @@ describe("render the car edit component", () => {
 
   it("must be an error", async () => {
     mockedAxios.get.mockImplementationOnce(() => Promise.reject(new Error()));
-    render(<CarEdit carId="123" setEditForm={edit} />);
 
-    const message = await screen.findByText(/something went wrong/i);
+    const message = await screen.findByText(/to change the data/i);
     expect(message).toBeInTheDocument();
   });
 });
