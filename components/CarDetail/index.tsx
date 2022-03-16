@@ -71,7 +71,7 @@ const CarDetail: FC<ICarDetailProps> = observer(({ carId }) => {
         <p>{carDetail?.description}</p>
         <SpeedBlock>
           <Block>
-            <Image src="/power.png" alt="speed" width={20} height={30} />
+            <Image src="/power.png" alt="power" width={20} height={30} />
             <p>{carDetail?.reserve} km</p>
             <span>power reserve</span>
           </Block>
