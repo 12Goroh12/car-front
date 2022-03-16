@@ -20,10 +20,13 @@ const car: ICar = {
 };
 
 describe("render the car edit component", () => {
-  it("there should be an heading in the component", () => {
-    const edit = jest.fn();
-    render(<CarEdit carId="123" setEditForm={edit} />);
+  const edit = jest.fn();
+  beforeEach(() => {
+    edit();
+  });
 
+  it("there should be an heading in the component", () => {
+    render(<CarEdit carId="123" setEditForm={edit} />);
     const heading = screen.getByRole("heading", {
       name: /to change the data/i,
     });
@@ -32,7 +35,6 @@ describe("render the car edit component", () => {
   });
 
   it("render all field", async () => {
-    const edit = jest.fn();
     render(<CarEdit carId="123" setEditForm={edit} />);
 
     const name = screen.getByLabelText(/name/i);
@@ -118,7 +120,6 @@ describe("render the car edit component", () => {
   });
 
   it("test for the onChange event", () => {
-    const edit = jest.fn();
     render(<CarEdit carId="123" setEditForm={edit} />);
 
     const name = screen.getByLabelText(/name/i);
@@ -129,7 +130,6 @@ describe("render the car edit component", () => {
   });
 
   it("should get the data for the car", async () => {
-    const edit = jest.fn();
     mockedAxios.get.mockImplementationOnce(() =>
       Promise.resolve({ data: car })
     );
@@ -142,7 +142,6 @@ describe("render the car edit component", () => {
   });
 
   it("must be an error", async () => {
-    const edit = jest.fn();
     mockedAxios.get.mockImplementationOnce(() => Promise.reject(new Error()));
     render(<CarEdit carId="123" setEditForm={edit} />);
 
