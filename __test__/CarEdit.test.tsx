@@ -1,12 +1,32 @@
 import userEvent from "@testing-library/user-event";
 import { screen, render, waitFor, fireEvent } from "@testing-library/react";
 import CarEdit from "../components/CarEdit";
+import axios from "axios";
+import { ICar } from "../types/cars";
+import { BaseUrl } from "../types/enums";
+
+jest.mock("axios");
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+const car: ICar = {
+  name: "",
+  price: 20000,
+  description: "nice car",
+  speed: 2.3,
+  reserve: 345,
+  used: false,
+  file: ["123"],
+  _id: "123",
+};
 
 describe("render the car edit component", () => {
-  it("there should be an heading in the component", () => {
-    const edit = jest.fn();
-    render(<CarEdit carId="123" setEditForm={edit} />);
+  const edit = jest.fn();
+  beforeEach(() => {
+    edit();
+  });
 
+  it("there should be an heading in the component", () => {
+    render(<CarEdit carId="123" setEditForm={edit} />);
     const heading = screen.getByRole("heading", {
       name: /to change the data/i,
     });
@@ -15,7 +35,6 @@ describe("render the car edit component", () => {
   });
 
   it("render all field", async () => {
-    const edit = jest.fn();
     render(<CarEdit carId="123" setEditForm={edit} />);
 
     const name = screen.getByLabelText(/name/i);
@@ -98,5 +117,35 @@ describe("render the car edit component", () => {
     expect(reserve).not.toBeRequired();
     expect(description).toBeInTheDocument();
     expect(description).not.toBeRequired();
+  });
+
+  it("test for the onChange event", () => {
+    render(<CarEdit carId="123" setEditForm={edit} />);
+
+    const name = screen.getByLabelText(/name/i);
+
+    userEvent.type(name, "tesla");
+
+    expect(screen.getByDisplayValue(/tesla/i)).toBeInTheDocument();
+  });
+
+  it("should get the data for the car", async () => {
+    mockedAxios.get.mockImplementationOnce(() =>
+      Promise.resolve({ data: car })
+    );
+    render(<CarEdit carId="123" setEditForm={edit} />);
+
+    expect(mockedAxios.get).toHaveBeenCalledTimes(4);
+    expect(mockedAxios.get).toHaveBeenCalledWith(
+      `${BaseUrl.URL}cars/details/${car._id}`
+    );
+  });
+
+  it("must be an error", async () => {
+    mockedAxios.get.mockImplementationOnce(() => Promise.reject(new Error()));
+    render(<CarEdit carId="123" setEditForm={edit} />);
+
+    const message = await screen.findByText(/something went wrong/i);
+    expect(message).toBeInTheDocument();
   });
 });
