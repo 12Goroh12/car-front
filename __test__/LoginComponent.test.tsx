@@ -6,8 +6,13 @@ import LoginComponent from "../components/LoginComponent";
 import { WebsiteUrls } from "../types/enums";
 
 describe("render the component", () => {
+  const submit = jest.fn();
+
+  beforeEach(() => {
+    submit();
+  });
+
   it("render heading", () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -26,7 +31,6 @@ describe("render the component", () => {
   });
 
   it("field name", () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -46,7 +50,6 @@ describe("render the component", () => {
   });
 
   it("focus field name", () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -67,7 +70,6 @@ describe("render the component", () => {
   });
 
   it("test for the onChange event", () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -88,7 +90,6 @@ describe("render the component", () => {
   });
 
   it("should show validation on blur field name", async () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -114,7 +115,6 @@ describe("render the component", () => {
   });
 
   it("field email", () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -141,7 +141,6 @@ describe("render the component", () => {
   });
 
   it("should show validation on blur field email", async () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -167,7 +166,6 @@ describe("render the component", () => {
   });
 
   it("should show validation on blur field password", async () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -193,7 +191,6 @@ describe("render the component", () => {
   });
 
   it("field password", () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -220,7 +217,6 @@ describe("render the component", () => {
   });
 
   it("button submit", async () => {
-    const submit = jest.fn();
     render(
       <LoginComponent
         heading="Registration"
@@ -254,7 +250,7 @@ describe("render the component", () => {
     const router = createMockRouter({
       query: { pathname: WebsiteUrls.REGISTRATION },
     });
-    const submit = jest.fn();
+
     render(
       <RouterContext.Provider value={router}>
         <LoginComponent
